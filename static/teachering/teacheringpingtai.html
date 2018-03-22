@@ -1,0 +1,224 @@
+<!doctype html>
+<html class="no-js">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>中原工学院教师业绩量化管理系统</title>
+<meta name="description" content="这是一个 index 页面">
+<meta name="keywords" content="index">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="icon" type="image/png" href="assets/i/favicon.png">
+<link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+<meta name="apple-mobile-web-app-title" content="Amaze UI" />
+<link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+<link rel="stylesheet" href="assets/css/admin.css">
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/app.js"></script>
+</head>
+<body>
+<!--[if lte IE 9]><p class="browsehappy">升级你的浏览器吧！ <a href="http://se.360.cn/" target="_blank">升级浏览器</a>以获得更好的体验！</p><![endif]-->
+</head>
+
+<body>
+<header class="am-topbar admin-header">
+  <div class="am-topbar-brand"><h2>中原工学院教师业绩量化管理系统</h2></div>
+
+  <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+    <ul class="am-nav am-nav-pills am-topbar-nav admin-header-list">
+
+   <li class="am-dropdown tognzhi" data-am-dropdown>
+ 
+
+ <li class="soso">
+ 	
+
+ </li>
+
+
+
+
+ <li class="am-hide-sm-only" style="float: right;"><a href="./login.html" >登录</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="am-cf admin-main"> 
+
+<div class="nav-navicon admin-main admin-sidebar">
+    
+  <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"><a href="./teacheringindex.html">教师业绩量录入主页</a> </div>
+  <div class="sideMenu">
+    <h3 class="am-icon-flag"><em></em> <a href="#">教学工作量业绩选择</a></h3>
+    <ul>
+      <li><a href="./teachering_select.html">业绩选择</a></li>
+      <li><a href="./selfmessage.html">查询个人信息</a></li>
+    </ul>
+      <h3 class="am-icon-cart-plus"><em></em> <a href="#"> 教研和教材业绩</a></h3>
+      <ul>
+          <li><a href='./teachering.html'>教研业绩量化</a></li>
+          <li><a href='./teachering_result.html'>教学平台业绩量化</a></li>
+          <li><a href='./teachering_book.html'>教材业绩量化</a></li>
+      </ul>
+      <h3 class="am-icon-users"><em></em> <a href="#">自然科学业绩</a></h3>
+      <ul>
+        <li><a href='./teachering_secience.html'>科研项目业绩量化</a> </li>
+        <li><a href='./teacheringlunwen.html'>论文业绩量化</a></li>
+        <li><a href='./teacheringchanquan.html'>知识产权业绩量化</a></li>
+        <li><a href='./teacheringzzyj.html'>著作业绩量化</a></li>
+        <li><a href='./teacheringproject.html'>项目结项、评价业绩量化</a></li>
+        <li><a href='./teacheringkyjli.html'>科研奖励的业绩量化</a></li>
+        <li><a href='./teacheringpingtai.html'>科研、学科平台业绩量化</a> </li>
+        <!-- <li>会员推荐图</li>
+        <li>推荐列表</li> -->
+      </ul>
+      <h3 class="am-icon-volume-up"><em></em> <a href="#">人文社会科学科研业绩</a></h3>
+      <ul>
+        <li><a href='./teachering_secience.html'>科研项目业绩量化</a> </li>
+        <li><a href='./teacheringlunwen1.html'>论文业绩量化</a></li>
+        <li><a href='./teacheringzzyj.html'>著作业绩量化</a>  </li>
+        <li><a href='./teacheringproject1.html'>项目结题业绩量化</a></li>
+        <li><a href='./teacheringpingtai.html'>科研项目业绩量化</a></li>
+      </ul>
+      <h3 class="am-icon-gears"><em></em> <a href="#">文学艺术类作品业绩点</a></h3>
+      <ul>
+        <li><a href='./teacheringwychuban.html'>文艺作品出版和发表业绩量化</a></li>
+        <li><a href='./teacheringzhanlan.html'>艺术展览与文艺演出业绩量化</a></li>
+        <li><a href='./teacheringhuojiang.html'>文艺作品获奖业绩量化</a></li>
+      </ul>
+      <h3 class="am-icon-gears"><em></em> <a href="#">学科建设业绩点</a></h3>
+      <ul>
+        <li><a href='./teacheringxuewei.html'>学科建设业绩</a></li>
+        <!-- <li><a href='./teacheringxueke.html'>学科</a></li>
+        <li><a href='./teacheringyanjius.html'>研究生培养</a></li> -->
+      </ul>
+    </div>
+    <!-- sideMenu End --> 
+    
+    <script type="text/javascript">
+			jQuery(".sideMenu").slide({
+				titCell:"h3", //鼠标触发对象
+				targetCell:"ul", //与titCell一一对应，第n个titCell控制第n个targetCell的显示隐藏
+				effect:"slideDown", //targetCell下拉效果
+				delayTime:300 , //效果时间
+				triggerTime:150, //鼠标延迟触发时间（默认150）
+				defaultPlay:true,//默认是否执行效果（默认true）
+				returnDefault:true //鼠标从.sideMen移走后返回默认状态（默认false）
+				});
+		</script> 
+
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+<div class=" admin-content">
+	
+		<div class="daohang">
+</div>
+	
+	
+
+
+<div class="admin">
+
+    <div class="admin-biaoge">
+      <div class="xinxitj">科研平台业绩量化表</div>
+      <form action="#" method="post" class="am-table">
+        <ul>
+          <li>1.项目级别</li>
+          <li>
+            <input type="radio" name="checkbox1" id="">
+            <label>国家级</label>
+            <input type="radio" name="checkbox1" id="">
+            <label>省重点实验室</label>
+            <input type="radio" name="checkbox1" id="">
+            <label>省部级</label>
+            <input type="radio" name="checkbox1" id="">
+            <label>市厅级</label>
+            
+            </li>
+            <li>2.考核验收等级 </li>
+            <li>
+            <input type="radio" name="checkbox2" id="">
+            <label>优秀</label>
+            <input type="radio" name="checkbox2" id="">
+            <label>良好</label>
+            <input type="radio" name="checkbox2" id="">
+            <label>合格</label>
+            <input type="radio" name="checkbox2" id="">
+            <label>基本合格</label>
+            <input type="radio" name="checkbox2" id="">
+            <label>不合格</label>
+            </li>
+            
+            
+            
+            <li>3.是否获准</li>
+            <li>
+            <input type="radio" name="checkbox4" id="">
+            <label>是</label>
+            <input type="radio" name="checkbox4" id="">
+            <label>否</label>
+            </li>
+            <li>4.按期验收</li>
+            <li>
+            <input type="radio" name="checkbox5" id="">
+            <label>是</label>
+            <input type="radio" name="checkbox5" id="">
+            <label>否</label>
+            </li>
+            <li>
+              <input type="submit" value="提交">
+            </li>
+        </ul>
+      </form>
+   
+    </div>
+    <div class="shuju">
+     
+      <script type="text/javascript">jQuery(".slideTxtBox").slide();</script> 
+   
+   
+   
+   
+   
+   
+   
+   
+</div>
+
+    <!-- <div class="foods">
+    	<ul>版权所有@2015 违反必究 </ul>
+    	<dl><a href="" title="返回头部" class="am-icon-btn am-icon-arrow-up"></a></dl>
+    </div> -->
+</div>
+
+</div>
+
+
+
+
+</div>
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/polyfill/rem.min.js"></script>
+<script src="assets/js/polyfill/respond.min.js"></script>
+<script src="assets/js/amazeui.legacy.js"></script>
+<![endif]--> 
+
+<!--[if (gte IE 9)|!(IE)]><!--> 
+<script src="assets/js/amazeui.min.js"></script>
+<!--<![endif]-->
+
+
+
+</body>
+</html>
