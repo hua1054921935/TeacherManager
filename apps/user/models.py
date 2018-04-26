@@ -21,3 +21,5 @@ class Role(models.Model):
         db_table='df_role'
         verbose_name='角色名'
         verbose_name_plural=verbose_name
+
+

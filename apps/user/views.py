@@ -44,8 +44,9 @@ class RegisterView(View):
         # 3.业务处理,进行注册操作
         role=Role.objects.get(id=role_id)
 
-        user=User.objects.create()
-        user.user_num=user_num
+
+        user=User()
+        user.username=user_num
         user.role=role
         user.professor=professor
         user.email=email
@@ -81,7 +82,6 @@ class RegisterView(View):
 # 报表导出
 class Excel_get(View):
     def get(self,request):
-
         datas=User.objects.all()
         wbname='全部数据'
         shellname='表格1'
@@ -119,6 +119,7 @@ class Show_html(View):
 class Login(View):
     # 返回登录页面
     def get(self,request):
+
         return render(request,'login.html')
 
     def post(self,request):
