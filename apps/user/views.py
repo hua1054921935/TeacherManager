@@ -13,6 +13,8 @@ from utils import xlwt
 from .backends import UsernumBackend
 # Create your views here.
 
+
+# 注册模块
 class RegisterView(View):
     def get(self,request):
         return render(request,'register.html')
@@ -23,7 +25,7 @@ class RegisterView(View):
         professor=request.POST.get('cpwd')
         email=request.POST.get('email')
         role_id=request.POST.get('loc')
-        print(role_id)
+
         # 2.校验参数完整性
         if not all([user_num,password,professor,email,role_id]):
             return render(request,'register.html',{'errmsg':'数据不完整,请重新输入'})
@@ -43,16 +45,16 @@ class RegisterView(View):
 
         # 3.业务处理,进行注册操作
         role=Role.objects.get(id=role_id)
-
-        user=User.objects.create()
-        user.user_num=user_num
-        user.role=role
-        user.professor=professor
-        user.email=email
+        print(role.role_name)
+        user=User.objects.create_user(username=user_num, email = email, professor=professor, role = role)
+        # user=User.objects.create()
+        # user.user_num=user_num
+        # user.role=role
+        # user.professor=professor
+        # user.email=email
         user.set_password(password)
         user.is_active=1
         user.save()
-
         # 注册成功需要通过邮箱返回激活链接
         # 使用itsdangerous生成激活的token信息
         seeializer = Serializer(settings.SECRET_KEY, 3600)
@@ -126,34 +128,48 @@ class Login(View):
         usernum=request.POST.get('usernum')
         pwd=request.POST.get('pwd')
         role_id=request.POST.get('role_id')
+        print(type(role_id))
 
         # 2.校验参数
         if not all([usernum,pwd,role_id]):
             return render(request,'')
         # 3.逻辑处理
         # print(usernum,pwd)
-        user=authenticate(usernum=usernum,password=pwd)
+        user=authenticate(username=usernum,password=pwd)
         if user is not None:
-            return HttpResponse('hello world')
-        else:
-            return HttpResponse('登录错误')
-            #     帐号密码正确
-        #     if user.is_active:
-        #         # 帐号已激活
-        #         # 记住状态
-        #         login(request, user)
-        #         response = redirect('register.html')
-        #         remember = request.POST.get('remember')
-        #         if remember == 'on':
-        #             #     记住用户名
-        #             response.set_cookie('usernum', usernum, max_age=7 * 24 * 3600)
-        #         else:
-        #             response.delete_cookie('usernum')
-        #         return response
-        #     else:
-        #         return render(request, 'login.html', {'errmsg': '帐号未激活'})
+        #     return HttpResponse('hello world')
         # else:
-        #     return render(request, 'login.html', {'errmsg': '帐号不存在请注册'})
+        #     return HttpResponse('登录错误')
+                # 帐号密码正确
+            print(user.role.id)
+            if user.is_active and user.role.id==int(role_id):
+                # 帐号已激活
+                # 记住状态
+                login(request, user)
+                response = redirect(reverse('user:role_select'))
+                remember = request.POST.get('remember')
+                if remember == 'on':
+                    #     记住用户名
+                    response.set_cookie('usernum', usernum, max_age=7 * 24 * 3600)
+                else:
+                    response.delete_cookie('usernum')
+                return response
+            else:
+                return render(request, 'login.html', {'errmsg': '帐号未激活'})
+        else:
+            return render(request, 'login.html', {'errmsg': '帐号不存在请注册'})
 
 
         # 4.返回响应结果
+
+
+class Role_select(View):
+    def get(self,request):
+        user=request.user
+        print('当前：'+str(user.role_id))
+        if user.role.role_name=='教师':
+            return render(request,'teachering.html')
+        elif user.role.role_name=='审核员':
+            return render(request, 'checker_index.html')
+        else:
+            return HttpResponse('66666')
