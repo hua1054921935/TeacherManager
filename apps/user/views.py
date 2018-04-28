@@ -127,34 +127,46 @@ class Login(View):
         usernum=request.POST.get('usernum')
         pwd=request.POST.get('pwd')
         role_id=request.POST.get('role_id')
+        print(usernum,pwd,role_id)
 
         # 2.校验参数
         if not all([usernum,pwd,role_id]):
-            return render(request,'')
+            print('ddddd')
+            return render(request,'register.html')
         # 3.逻辑处理
         # print(usernum,pwd)
-        user=authenticate(usernum=usernum,password=pwd)
+        user=authenticate(username=usernum,password=pwd)
         if user is not None:
-            return HttpResponse('hello world')
-        else:
-            return HttpResponse('登录错误')
-            #     帐号密码正确
-        #     if user.is_active:
-        #         # 帐号已激活
-        #         # 记住状态
-        #         login(request, user)
-        #         response = redirect('register.html')
-        #         remember = request.POST.get('remember')
-        #         if remember == 'on':
-        #             #     记住用户名
-        #             response.set_cookie('usernum', usernum, max_age=7 * 24 * 3600)
-        #         else:
-        #             response.delete_cookie('usernum')
-        #         return response
-        #     else:
-        #         return render(request, 'login.html', {'errmsg': '帐号未激活'})
+        #     return HttpResponse('hello world')
         # else:
-        #     return render(request, 'login.html', {'errmsg': '帐号不存在请注册'})
+        #     return HttpResponse('登录错误')
+                # 帐号密码正确
+            if user.is_active:
+                # 帐号已激活
+                # 记住状态
+                login(request, user)
+                response = redirect(login)
+                remember = request.POST.get('remember')
+
+                if remember == 'on':
+                    #     记住用户名
+                    response.set_cookie('usernum', usernum, max_age=7 * 24 * 3600)
+                else:
+                    response.delete_cookie('usernum')
+                return response
+            else:
+                return render(request, 'login.html', {'errmsg': '帐号未激活'})
+        else:
+            return render(request, 'login.html', {'errmsg': '帐号不存在请注册'})
 
 
         # 4.返回响应结果
+
+
+# 个人信息展示
+class Showinfo(View):
+    def get(self,request):
+        pass
+    def post(self,requset):
+        pass
+
