@@ -127,6 +127,7 @@ class Login(View):
         usernum=request.POST.get('usernum')
         pwd=request.POST.get('pwd')
         role_id=request.POST.get('role_id')
+        print('666')
 
         # 2.校验参数
         if not all([usernum,pwd,role_id]):
