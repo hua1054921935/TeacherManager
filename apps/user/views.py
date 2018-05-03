@@ -67,7 +67,7 @@ class RegisterView(View):
         # 返回应答
 
         # 4.返回响应
-        return HttpResponse('hello world')
+        return render(request,'login.html')
 
 
 
@@ -136,6 +136,7 @@ class Login(View):
         # 3.逻辑处理
         # print(usernum,pwd)
         user=authenticate(username=usernum,password=pwd)
+        print(666)
         if user is not None:
         #     return HttpResponse('hello world')
         # else:
@@ -145,7 +146,7 @@ class Login(View):
                 # 帐号已激活
                 # 记住状态
                 login(request, user)
-                response = redirect(login)
+                response = redirect(reverse('user:role_select'))
                 remember = request.POST.get('remember')
 
                 if remember == 'on':
@@ -164,9 +165,27 @@ class Login(View):
 
 
 # 个人信息展示
-class Showinfo(View):
+class Role_select(View):
     def get(self,request):
-        pass
+        user=request.user
+        print(user.username)
+        print('当前'+str(user.role_id))
+        if user.role.role_name=='教师':
+            return render(request,'teacheringindex.html')
+        elif user.role.role_name=='审核员':
+            return render(request,'checker_index.html')
+        else:
+            return render(request,'adminstor_index.html')
     def post(self,requset):
         pass
+# /user/selfmessage
+class Usermessage(View):
+    def get(self,request):
+
+        user=request.user
+
+        return render(request,'selfmessage.html',{'user':user})
+    def post(self,request):
+        pass
+
 

@@ -5,6 +5,6 @@ from django.views.generic import View
 
 class Scinece(View):
     def get(self,request):
-        pass
+        return render(request,'teachering.html')
     def post(self,request):
         pass
