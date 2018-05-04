@@ -10,7 +10,10 @@ class Teacher_selcet(View):
         user=request.user
         username=user.username
     #     获取该老师对应的业绩信息
-        Teacher_count.objects.get(usernum=username)
+        teacher_count=Teacher_count.objects.filter(usernum=username)
+        for data in teacher_count:
+            count=count+data.count_jidian
+
     def post(self,request):
         pass
 
