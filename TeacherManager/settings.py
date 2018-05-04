@@ -43,10 +43,10 @@ INSTALLED_APPS = (
     'apps.register',
     'apps.teacher'
 )
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    'apps.user.backends.UsernumBackend',
-)
+# AUTHENTICATION_BACKENDS = (
+#     'django.contrib.auth.backends.ModelBackend',
+#     'apps.user.backends.UsernumBackend',
+# )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

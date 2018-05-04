@@ -8,7 +8,7 @@ class UsernumBackend(object):
         usernum = usernum
 
         try:
-            user = User.objects.get(user_num=usernum)
+            user = User.objects.get(username=usernum)
 
         except User.DoesNotExist:
             pass
