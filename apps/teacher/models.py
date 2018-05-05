@@ -91,8 +91,29 @@ class Teacher_count(models.Model):
 
 class Rate_jidian(models.Model):
     name=models.CharField(max_length=50, verbose_name='职称名')
-    jiidan=models.IntegerField(default=0,verbose_name='职称对应业绩点')
+    scien_jiidan=models.IntegerField(default=0,verbose_name='教学业绩点')
+    teach_jiidan = models.IntegerField(default=0, verbose_name='科研业绩点')
     class Meta:
         db_table = 'rate_jidian'
         verbose_name = '职称对应业绩点'
+        verbose_name_plural = verbose_name
+
+
+# 业绩表
+class Work_count(models.Model):
+    usernum=models.CharField(max_length=50,verbose_name='用户学号')
+    count_jidians=models.IntegerField(default=0,verbose_name='个人业绩点')
+    rate_jidians=models.ForeignKey('Work_rate_jidian',verbose_name='额定业绩点')
+    class Meta:
+        db_table = 'work_count'
+        verbose_name = '业绩点统计'
+        verbose_name_plural = verbose_name
+
+class Work_rate_jidian(models.Model):
+    pro_name=models.CharField(max_length=50, verbose_name='职称名')
+    scien_jiidans=models.IntegerField(default=0,verbose_name='教学业绩点')
+    teach_jiidans = models.IntegerField(default=0, verbose_name='科研业绩点')
+    class Meta:
+        db_table = 'work_rate_jidian'
+        verbose_name = '职称业绩点'
         verbose_name_plural = verbose_name

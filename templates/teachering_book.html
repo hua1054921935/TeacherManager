@@ -1,0 +1,71 @@
+{% extends 'teacheringindex.html' %}
+{% block body1 %}
+
+<div class=" admin-content">
+	
+		<div class="daohang">
+</div>
+	
+	
+
+
+<div class="admin">
+
+    <div class="admin-biaoge">
+      <div class="xinxitj">教材业绩量化表</div>
+     
+      <form action="{% url 'teacher:teachers_book' %}" method="post" class="am-table">
+        <ul>
+          <li>1.教材级别系数、语言类别系数表</li>
+          <li>
+              {% for data in dict1.book_levels %}
+            <input type="radio" name="book_level" value="{{ data.id }}">
+            <label>{{ data.book_level_name }}</label>
+            {% endfor %}
+            </li>
+            <li>2.主编部分 </li>
+            <li>
+             {% for datas in dict1.book_auths %}
+            <input type="radio" name="book_auth" value="{{ datas.id }}">
+            <label>{{ datas.book_auth_name }}</label>
+            {% endfor %}
+            </li>
+            
+            
+            
+            <li>3.立项系数</li>
+            <li>
+            {% for datas1 in dict1.book_lixiangs %}
+            <input type="radio" name="lixiang" value="{{ datas1.id }}">
+            <label>{{ datas1.book_lixiang_name}}</label>
+            {% endfor %}
+            </li>
+            <li>4.再版系数</li>
+            <li>
+            <input type="radio" name="zaiban_math" value="0.5">
+            <label>再版系数0.5</label>
+            </li>
+            <li>
+            <label>5.输入教材字数(业绩点/万字)</label>
+            <input type="text" name="book_mount">
+            </li> 
+            <li>
+              <input type="submit" value="提交">
+            </li>
+        </ul>
+      </form>
+   
+    </div>
+    <div class="shuju">
+     
+      <script type="text/javascript">jQuery(".slideTxtBox").slide();</script> 
+   
+   
+   
+   
+   
+   
+   </div>
+  </div>
+</div>
+{% endblock %}

@@ -50,14 +50,14 @@
   <div class="sideMenu">
     <h3 class="am-icon-flag"><em></em> <a href="#">教学工作量业绩选择</a></h3>
     <ul>
-      <li><a href="./teachering_select.html">业绩选择</a></li>
+      <li><a href={% url 'teacher:teachers_selcet' %}>业绩查看</a></li>
       <li><a href={% url 'user:selfmessage' %}>查询个人信息</a></li>
     </ul>
       <h3 class="am-icon-cart-plus"><em></em> <a href="#"> 教研和教材业绩</a></h3>
       <ul>
-          <li><a href='./teachering.html'>教研业绩量化</a></li>
-          <li><a href='./teachering_result.html'>教学平台业绩量化</a></li>
-          <li><a href='./teachering_book.html'>教材业绩量化</a></li>
+          <li><a href={% url 'teacher:teachers_work' %}>教研业绩量化</a></li>
+          <li><a href={% url 'teacher:teachers_pingtai' %}>教学平台业绩量化</a></li>
+          <li><a href={% url 'teacher:teachers_book' %}>教材业绩量化</a></li>
       </ul>
       <h3 class="am-icon-users"><em></em> <a href="#">自然科学业绩</a></h3>
       <ul>
@@ -114,7 +114,7 @@
     
     
 </div>
-
+{% block body1 %}
 <div class=" admin-content">
 	
 		<div class="daohang">
@@ -157,17 +157,18 @@
 
 
 </div>
-
+{% endblock %}
 <!--[if lt IE 9]>
 <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-<script src="assets/js/polyfill/rem.min.js"></script>
-<script src="assets/js/polyfill/respond.min.js"></script>
-<script src="assets/js/amazeui.legacy.js"></script>
+<script src={% static 'teachering/assets/js/polyfill/rem.min.js' %}></script>
+<script src={% static 'teachering/assets/js/polyfill/respond.min.js' %}></script>
+<script src={% static 'teachering/assets/js/amazeui.legacy.js' %}></script>
 <![endif]--> 
 
 <!--[if (gte IE 9)|!(IE)]><!--> 
-<script src="assets/js/amazeui.min.js"></script>
+
+<script src={% static 'teachering/assets/js/amazeui.min.js' %}></script>
 <!--<![endif]-->
 
 

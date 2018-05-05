@@ -32,10 +32,10 @@
     <ul class="am-nav am-nav-pills am-topbar-nav admin-header-list">
 
    <li class="am-dropdown tognzhi" data-am-dropdown>
-  
+
 
  <li class="soso">
- 	
+
 
  </li>
 
@@ -44,22 +44,22 @@
   </div>
 </header>
 
-<div class="am-cf admin-main"> 
+<div class="am-cf admin-main">
 
 <div class="nav-navicon admin-main admin-sidebar">
-    
+
   <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"><a href="./teacheringindex.html">审核人员主页</a> </div>
   <div class="sideMenu">
     <h3 class="am-icon-flag"><em></em> <a href="#">教师业绩查询</a></h3>
     <ul>
-      <li><a href="./teachering_select.html">业绩选择</a></li>
+      <li><a href={% url 'teacher:teachers_selcet' %}>业绩选择</a></li>
       <li><a href={% url 'user:selfmessage' %}>查询个人信息</a></li>
     </ul>
       <h3 class="am-icon-cart-plus"><em></em> <a href="#"> 教研和教材业绩</a></h3>
       <ul>
-          <li><a href='./teachering.html'>教研业绩量化</a></li>
-          <li><a href='./teachering_result.html'>教学平台业绩量化</a></li>
-          <li><a href='./teachering_book.html'>教材业绩量化</a></li>
+          <li><a href={% url 'teacher:teachers_work' %}>教研业绩量化</a></li>
+          <li><a href={% url 'teacher:teachers_pingtai' %}>教学平台业绩量化</a></li>
+          <li><a href={% url 'teacher:teachers_book' %}>教材业绩量化</a></li>
       </ul>
       <h3 class="am-icon-users"><em></em> <a href="#">自然科学业绩</a></h3>
       <ul>
@@ -94,8 +94,8 @@
         <li><a href='./teacheringyanjius.html'>研究生培养</a></li> -->
       </ul>
     </div>
-    <!-- sideMenu End --> 
-    
+    <!-- sideMenu End -->
+
     <script type="text/javascript">
 			jQuery(".sideMenu").slide({
 				titCell:"h3", //鼠标触发对象
@@ -106,15 +106,15 @@
 				defaultPlay:true,//默认是否执行效果（默认true）
 				returnDefault:false //鼠标从.sideMen移走后返回默认状态（默认false）
 				});
-		</script> 
+		</script>
 
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
 </div>
 
 <div class=" admin-content">
@@ -179,9 +179,9 @@
    
    
    
+
    
-   
-   
+
    
 </div>
 
@@ -204,9 +204,9 @@
 <script src="assets/js/polyfill/rem.min.js"></script>
 <script src="assets/js/polyfill/respond.min.js"></script>
 <script src="assets/js/amazeui.legacy.js"></script>
-<![endif]--> 
+<![endif]-->
 
-<!--[if (gte IE 9)|!(IE)]><!--> 
+<!--[if (gte IE 9)|!(IE)]><!-->
 <script src="assets/js/amazeui.min.js"></script>
 <!--<![endif]-->
 

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import View
-from .models import Teacher_work,Teacher_pingtai,Book_level,Book_lixiang,Book_auth,Teacher_count,Rate_jidian
+from .models import Teacher_work,Teacher_pingtai,Book_level,Book_lixiang,Book_auth,Work_rate_jidian,Work_count
 # Create your views here.
 # 教师业绩量化
 
@@ -9,11 +9,19 @@ class Teacher_selcet(View):
     def get(self,request):
         user=request.user
         username=user.username
-    #     获取该老师对应的业绩信息
-        teacher_count=Teacher_count.objects.filter(usernum=username)
-        for data in teacher_count:
-            count=count+data.count_jidian
+        dict1 = {}
+        dict1['username']=username    #     获取该老师对应的业绩信息
+        teacher_count=Work_count.objects.filter(usernum=username)
 
+        count=0
+        for data in teacher_count:
+            count=count+data.count_jidians
+            rate_jidian=data.rate_jidians
+            dict1['teacher_jidian']=rate_jidian.teach_jiidans
+            dict1['secien_jidian']=rate_jidian.scien_jiidans
+        dict1['count']=count
+
+        return render(request,'teachering_select.html',{'data':dict1})
     def post(self,request):
         pass
 
@@ -72,9 +80,12 @@ class Teachers_book(View):
         # 存入对应的业绩表中
         username=user.username
         professor=user.professor
-        rate_jidian=Rate_jidian.objects.get(name=professor)
-        teacher_count=Teacher_count()
-        Teacher_count.objects.create(usernum=username,count_jidian=book_count,rate_jidian=rate_jidian)
+        print(professor)
+        rate_jidians=Work_rate_jidian.objects.get(pro_name=professor)
+        print(6666)
+        print(rate_jidians.scien_jiidans,rate_jidians.teach_jiidans)
+        # teacher_count=Teacher_count()
+        Work_count.objects.create(usernum=username,count_jidians=book_count,rate_jidians=rate_jidians)
 
 
         return HttpResponse('ok')
