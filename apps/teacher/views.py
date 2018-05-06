@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
+from django.core.urlresolvers import reverse
 from django.views.generic import View
 from .models import Teacher_work,Teacher_pingtai,Book_level,Book_lixiang,Book_auth,Work_rate_jidian,Work_count
 # Create your views here.
@@ -88,6 +89,6 @@ class Teachers_book(View):
         Work_count.objects.create(usernum=username,count_jidians=book_count,rate_jidians=rate_jidians)
 
 
-        return HttpResponse('ok')
+        return redirect(reverse('teacher:teachers_selcet'))
         # print(book1_jidian)
         # print(book_level,book_auth,book_lixiang,book_mount)
