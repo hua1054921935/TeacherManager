@@ -1,0 +1,66 @@
+{% extends 'teacheringindex.html' %}
+{% block body1 %}
+<div class=" admin-content">
+	
+		<div class="daohang">
+</div>
+	
+	
+
+
+<div class="admin">
+
+    <div class="admin-biaoge">
+      <div class="xinxitj">知识产权业绩量化表</div>
+      <form action="{% url 'teacher:teachers_chanquan' %}" method="post" class="am-table">
+        <ul>
+          <li>1.专利类别</li>
+          <li>
+              {% for data in data_list %}
+            <input type="radio" name="intellectual_name" value="{{ data.id }}">
+            <label>{{ data.intellectual_name }}</label>
+
+              {% endfor %}
+            </li>
+            <li>2.是否为第一专利人 </li>
+            <li>
+            <input type="radio" name="checkbox2" value="1">
+            <label>是</label>
+            <input type="radio" name="checkbox2" value="0">
+            <label>否</label>
+            </li>
+            <li>3.授权的知识产权是否超过8项</li>
+            <li>
+            <input type="radio" name="checkbox3" value="1">
+            <label>是</label>
+            <input type="radio" name="checkbox3" value="0">
+            <label>否</label>
+            </li>
+            <li>
+              <input type="submit" value="提交">
+            </li>
+        </ul>
+      </form>
+   
+    </div>
+    <div class="shuju">
+     
+      <script type="text/javascript">jQuery(".slideTxtBox").slide();</script> 
+   
+   
+   
+   
+   
+   
+   
+   
+</div>
+
+
+</div>
+
+</div>
+{% endblock %}
+
+
+

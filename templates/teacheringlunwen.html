@@ -1,0 +1,84 @@
+{% extends 'teacheringindex.html' %}
+{% block body1 %}
+
+<div class=" admin-content">
+	
+		<div class="daohang">
+</div>
+	
+	
+
+
+<div class="admin">
+
+    <div class="admin-biaoge">
+      <div class="xinxitj">论文业绩量化表</div>
+      <form action="{% url 'teacher:teachers_thesis' %}" method="post" class="am-table">
+        <ul>
+          <li>1.SCI收录</li>
+          <li>
+              {% for data in dict2.thesis_sci %}
+            <input type="radio" name="sci" value="{{ data.id }}">
+            <label>{{ data.sci_name }}</label>
+            {% endfor %}
+            </li>
+            <li>2.EI收录 </li>
+            <li>
+            {% for data1 in dict2.thesis_ei%}
+            <input type="radio" name="ei" value="{{ data1.id }}">
+            <label>{{ data1.ei_name }}</label>
+            {% endfor %}
+
+            </li>
+            <li>3.是否被NatureScience</li>
+            <li>
+            <input type="radio" name="natureScience" value="1">
+            <label>是</label>
+            <input type="radio" name="natureScience" value="0">
+            <label>否</label>
+            
+            </li>
+            <li>4.CSCD核心库</li>
+            <li>
+                {% for data2 in dict2.thesis_cscd %}
+                <input type="radio" name="cscd" value="{{ data2.id }}">
+                <label>{{ data2.cscd_name }}</label>
+                {% endfor %}
+
+            </li>
+            <li>5.是否为第一作者</li>
+            <li>
+                <input type="radio" name="auth" value="1">
+                <label>是</label>
+                <input type="radio" name="auth" value="0">
+                <label>否</label>
+            </li>
+
+            <li>
+              <input type="submit" value="提交">
+            </li>
+        </ul>
+      </form>
+   
+    </div>
+    <div class="shuju">
+     
+      <script type="text/javascript">jQuery(".slideTxtBox").slide();</script> 
+   
+   
+   
+   
+   
+   
+   
+   
+</div>
+
+
+</div>
+
+</div>
+{% endblock %}
+
+
+

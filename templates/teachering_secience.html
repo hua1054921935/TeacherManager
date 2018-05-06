@@ -1,0 +1,59 @@
+{% extends 'teacheringindex.html' %}
+{% block body1 %}
+
+<div class=" admin-content">
+	
+		<div class="daohang">
+</div>
+	
+	
+
+
+<div class="admin">
+
+    <div class="admin-biaoge">
+      <div class="xinxitj">科研项目业绩量化</div>
+      <table class="am-table">
+        <thead>
+          <tr>
+            <th>序号</th>
+            <th>项目级别</th>
+            <th>系数</th>
+            <th>立项业绩点</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for data in data_list %}
+          <tr>
+            <td>{{ data.id }}</td>
+            <td>{{ data.pro_level }}</td>
+            <td>{{ data.pro_math }}</td>
+            <td>{{ data.pro_jidian }}</td>
+			      <td><a href="###">添加</a></td>
+          </tr>
+         {% endfor %}
+		  
+        </tbody>
+      </table>
+   
+    </div>
+    <div class="shuju">
+     
+      <script type="text/javascript">jQuery(".slideTxtBox").slide();</script> 
+   
+   
+   
+   
+   
+   
+   
+   
+</div>
+
+
+</div>
+
+</div>
+{% endblock %}
+
+
