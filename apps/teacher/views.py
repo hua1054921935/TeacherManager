@@ -2,7 +2,8 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.core.urlresolvers import reverse
 from django.views.generic import View
-from .models import Teacher_work,Teacher_pingtai,Book_level,Book_lixiang,Book_auth,Work_rate_jidian,Work_count
+from .models import Teacher_work,Teacher_pingtai,Book_level,Book_lixiang,Book_auth,Work_rate_jidian,Work_count,Nature_keyan,Thesis_sci,Thesis_cscd,Thesis_ei,Intellectual
+
 # Create your views here.
 # 教师业绩量化
 
@@ -81,10 +82,9 @@ class Teachers_book(View):
         # 存入对应的业绩表中
         username=user.username
         professor=user.professor
-        print(professor)
+
         rate_jidians=Work_rate_jidian.objects.get(pro_name=professor)
-        print(6666)
-        print(rate_jidians.scien_jiidans,rate_jidians.teach_jiidans)
+
         # teacher_count=Teacher_count()
         Work_count.objects.create(usernum=username,count_jidians=book_count,rate_jidians=rate_jidians)
 
@@ -92,3 +92,107 @@ class Teachers_book(View):
         return redirect(reverse('teacher:teachers_selcet'))
         # print(book1_jidian)
         # print(book_level,book_auth,book_lixiang,book_mount)
+
+
+
+
+# 在自然科学 科研项目业绩量化
+class Teachers_science(View):
+    def get(self,request):
+        data_list=Nature_keyan.objects.all()
+        return render(request, 'teachering_secience.html', {'data_list': data_list})
+    def post(self,request):
+        pass
+#论文
+class Teachers_thesis(View):
+    def get(self,request):
+        # sci收录
+        dict2={}
+        thesis_sci=Thesis_sci.objects.all()
+        dict2['thesis_sci']=thesis_sci
+        thesis_cscd=Thesis_cscd.objects.all()
+        dict2['thesis_cscd']=thesis_cscd
+        thesis_ei=Thesis_ei.objects.all()
+        dict2['thesis_ei']=thesis_ei
+        return render(request,'teacheringlunwen.html',{'dict2':dict2})
+
+    def post(self,request):
+        # 获取到对应的id、
+        user = request.user
+        sci = request.POST.get('sci')
+        ei= request.POST.get('ei')
+        natureScience = request.POST.get('natureScience')
+        cscd = float(request.POST.get('cscd'))
+        auth = float(request.POST.get('auth'))
+        # 获取到对应的业绩点
+        max_jidna=0
+        if natureScience=="1":
+            max_jidna=3000
+        else:
+            max_jidna=0
+        if sci:
+            sci_jidian=float(Thesis_sci.objects.get(id=sci).sci_jidian)
+            if sci_jidian>=max_jidna:
+                max_jidna=sci_jidian
+            else:
+                max_jidna=max_jidna
+        if ei:
+            ei_jidan=float(Thesis_ei.objects.get(id=ei).ei_jidian)
+            if ei_jidan>=max_jidna:
+                max_jidna=ei_jidan
+            else:
+                max_jidna=max_jidna
+        if cscd:
+            cscd_jidian=float(Thesis_cscd.objects.get(id=cscd).cscd_jidian)
+            if cscd_jidian>=max_jidna:
+                max_jidna=cscd_jidian
+            else:
+                max_jidna=max_jidna
+        if auth=="1":
+            math=1
+        else:
+            math=0.3
+        book_count=max_jidna*math
+        username=user.username
+        professor = user.professor
+
+        rate_jidians = Work_rate_jidian.objects.get(pro_name=professor)
+        Work_count.objects.create(usernum=username, count_jidians=book_count, rate_jidians=rate_jidians)
+        return redirect(reverse('teacher:teachers_selcet'))
+
+# 知识产权
+class Teachers_chanquan(View):
+    def get(self,request):
+
+        # 知识产权表
+        data_list=Intellectual.objects.all()
+        return  render(request,'teacheringchanquan.html',{'data_list':data_list})
+    def post(self,request):
+        user=request.user
+        # 获取对应的绩点
+        intellectuals_name=request.POST.get('intellectual_name')
+        math1 = request.POST.get('checkbox2')
+        math2 = request.POST.get('checkbox3')
+        jiidan=float(Intellectual.objects.get(id=intellectuals_name).intellectual_jidina)
+        if math1=="1":
+            math=0.7
+        else:
+            math=0
+        if math2=='1':
+            math=math*0.5
+        else:
+            math=math
+
+        book_count=math*jiidan
+
+        username = user.username
+        professor = user.professor
+
+        rate_jidians = Work_rate_jidian.objects.get(pro_name=professor)
+        Work_count.objects.create(usernum=username, count_jidians=book_count, rate_jidians=rate_jidians)
+        return redirect(reverse('teacher:teachers_selcet'))
+
+
+#
+
+
