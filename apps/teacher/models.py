@@ -203,8 +203,8 @@ class Country(models.Model):
 
 class End_pro(models.Model):
     end_pro_name=models.CharField(max_length=120,verbose_name='结题等级')
-    end_pro_jidian=models.CharField(max_length=120,verbose_name='对应绩点')
-    end_pro_country=models.ForeignKey('Country',verbose_name='对应单位')
+    # end_pro_jidian=models.CharField(max_length=120,verbose_name='对应绩点')
+    # end_pro_country=models.ForeignKey('Country',verbose_name='对应单位')
     class Meta:
         db_table = 'end_pro'
         verbose_name = '结题'
@@ -212,12 +212,14 @@ class End_pro(models.Model):
 
 class End_pingjia(models.Model):
     pingjia_name=models.CharField(max_length=120,verbose_name='评价等级')
-    pingjia_jidian=models.CharField(max_length=120,verbose_name='对应绩点')
-    pingjia_country=models.ForeignKey('Country',verbose_name='对应单位')
+    # pingjia_jidian=models.CharField(max_length=120,verbose_name='对应绩点')
+    # pingjia_country=models.ForeignKey('Country',verbose_name='对应单位')
     class Meta:
         db_table = 'end_pingjia'
         verbose_name = '评价'
         verbose_name_plural = verbose_name
+class End_jidna(models.Model):
+    country=models.ForeignKey('Country',verbose_name='组织单位')
 
 
 # 6.科研奖励的业绩量化

@@ -1,8 +1,36 @@
 {% extends 'teacheringindex.html' %}
 {% block body1 %}
+{#{% block js_add %}#}
+<script>
+    $(function(){
 
+        $('.add').click(function(){
+
+            var jidan_id=$(this).attr('id');
+
+            $.ajax({
+            url:"{% url 'teacher:teachers_pingtai' %}",
+            type:"POST",
+            data: {id:jidan_id},
+            success: function (data) {
+                if (data.errno == 0) {
+                   alert('添加成功')
+                    window.location.href="{% url 'teacher:teachers_selcet' %}";
+
+                }
+                else  {
+                    alert('添加失败');
+                }
+            }
+        });
+
+        })
+
+    })
+</script>
+
+{#{% endblock %}#}
 <div class=" admin-content">
-	
 		<div class="daohang">
 </div>
 	
@@ -16,6 +44,7 @@
       <table class="am-table">
         <thead>
           <tr>
+            <th>序号</th>
             <th>项目级别</th>
             <th>获准业绩点</th>
             <th>获准后建设期年度考核业绩点</th>
@@ -28,12 +57,13 @@
 
         {% for data in data_list %}
           <tr>
+            <td id="jidian_id" >{{ data.id }}</td>
             <td>{{ data.pro_level }}</td>
             <td>{{ data.pro_huozhun }}</td>
             <td>{{ data.pro_huozhunlast }}</td>
             <td>{{ data.pro_check }}</td>
             <td> {{ data.pro_check_math }}</td>
-			<td><a href="###">添加</a></td>
+			<td><a href="#" class="add" id="{{ data.id }}">添加</a></td>
           </tr>
         {% endfor %}
 		  
@@ -48,7 +78,7 @@
    
    
    
-  </div>
+    </div>
    
  </div>
    

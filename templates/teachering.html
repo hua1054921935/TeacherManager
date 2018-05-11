@@ -1,5 +1,39 @@
 {% extends 'teacheringindex.html' %}
+{#{% block js_add %}#}
+
+
+{#{% endblock %}#}
 {% block body1 %}
+<script>
+    $(function(){
+
+        $('.add').click(function(){
+
+            var jidan_id=$(this).attr('id');
+
+            $.ajax({
+            url:"{% url 'teacher:teachers_work' %}",
+            type:"POST",
+            data: {id:jidan_id},
+
+
+            success: function (data) {
+                if (data.errno == 0) {
+                   alert('添加成功');
+                    window.location.href="{% url 'teacher:teachers_selcet' %}";
+
+                }
+                else  {
+                    alert('添加失败');
+                }
+            }
+        });
+
+        })
+
+    })
+</script>
+
 <div class=" admin-content">
 	
 		<div class="daohang">
@@ -27,11 +61,12 @@
         {% for data in data_list %}
           <tr>
             <td>{{ data.course_name }}</td>
-            <td>{{ data.id }}</td>
+            <td id="jidian_id">{{ data.id }}</td>
             <td>{{ data.course_type }}</td>
             <td> {{ data.course_jidian }} </td>
             <td>{{ data.course_discript }}</td>
-			      <td><a href="###">添加</a></td>
+{#              <td><a href="#" class="add" id="{{ data.id }}">添加</a></td>#}
+            <td><a href="#" class="add" id="{{ data.id }}">添加</a></td>
           </tr>
          {% endfor %}
 		  
@@ -42,13 +77,11 @@
     <div class="shuju">
      
       <script type="text/javascript">jQuery(".slideTxtBox").slide();</script> 
-   
-   
-   
-   
-   
+
    </div>
    
    </div>
 </div>
+
+
 {% endblock %}

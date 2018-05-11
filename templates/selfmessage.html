@@ -38,8 +38,14 @@
 
 
  </li>
+        {% if user.is_authenticated  %}
+         <li class="am-hide-sm-only" style="float: right;"><a href={% url 'user:loginout' %} >退出</a></li>
+        <li class="am-hide-sm-only" style="float: right;"><a href="###">{{ user.username }}</a></li>
 
-    <li class="am-hide-sm-only" style="float: right;"><a href="./login.html" >登录</a></li>
+        {% else %}
+        <li class="am-hide-sm-only" style="float: right;"><a href={% url 'user:register' %} >注册</a></li>
+        <li class="am-hide-sm-only" style="float: right;"><a href={% url 'user:login' %} >登录</a></li>
+        {% endif %}
     </ul>
   </div>
 </header>
@@ -48,11 +54,11 @@
 
 <div class="nav-navicon admin-main admin-sidebar">
 
-  <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"><a href="./teacheringindex.html">审核人员主页</a> </div>
+  <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"><a href="./teacheringindex.html">个人信息主页</a> </div>
   <div class="sideMenu">
-    <h3 class="am-icon-flag"><em></em> <a href="#">教师业绩查询</a></h3>
+    <h3 class="am-icon-flag"><em></em> <a href="#">教师个人信息</a></h3>
     <ul>
-      <li><a href={% url 'teacher:teachers_selcet' %}>业绩选择</a></li>
+      <li><a href={% url 'teacher:teachers_selcet' %}>业绩查看</a></li>
       <li><a href={% url 'user:selfmessage' %}>查询个人信息</a></li>
     </ul>
       <h3 class="am-icon-cart-plus"><em></em> <a href="#"> 教研和教材业绩</a></h3>
@@ -66,30 +72,30 @@
         <li><a href={% url 'teacher:teachers_science' %}>科研项目业绩量化</a> </li>
         <li><a href={% url 'teacher:teachers_thesis' %}>论文业绩量化</a></li>
         <li><a href={% url 'teacher:teachers_chanquan' %}>知识产权业绩量化</a></li>
-        <li><a href='./teacheringzzyj.html'>著作业绩量化</a></li>
-        <li><a href='./teacheringproject.html'>项目结项、评价业绩量化</a></li>
-        <li><a href='./teacheringkyjli.html'>科研奖励的业绩量化</a></li>
-        <li><a href='./teacheringpingtai.html'>科研、学科平台业绩量化</a> </li>
+        <li><a href={% url 'teacher:teachers_zzyj' %}>著作业绩量化</a></li>
+        <li><a href={% url 'teacher:teachers_proj' %}>项目结项、评价业绩量化</a></li>
+        <li><a href={% url 'teacher:teachers_reward' %}>科研奖励的业绩量化</a></li>
+        <li><a href={% url 'teacher:teachers_scpitai' %}>科研、学科平台业绩量化</a> </li>
         <!-- <li>会员推荐图</li>
         <li>推荐列表</li> -->
       </ul>
       <h3 class="am-icon-volume-up"><em></em> <a href="#">人文社会科学科研业绩</a></h3>
       <ul>
-        <li><a href='./teachering_secience.html'>科研项目业绩量化</a> </li>
-        <li><a href='./teacheringlunwen.html'>论文业绩量化</a></li>
-        <li><a href='./teacheringzzyj.html'>著作业绩量化</a>  </li>
-        <li><a href='./teacheringproject1.html'>项目结题业绩量化</a></li>
-        <li><a href='./teacheringpingtai.html'>科研项目业绩量化</a></li>
+        <li><a href={% url 'teacher:teachers_science' %}>科研项目业绩量化</a> </li>
+        <li><a href={% url 'teacher:teachers_thesis' %}>论文业绩量化</a></li>
+        <li><a href={% url 'teacher:teachers_zzyj' %}>著作业绩量化</a>  </li>
+        <li><a href={% url 'teacher:teachers_proj' %}>项目结题业绩量化</a></li>
+        <li><a href={% url 'teacher:teachers_scpitai' %}>科研项目业绩量化</a></li>
       </ul>
       <h3 class="am-icon-gears"><em></em> <a href="#">文学艺术类作品业绩点</a></h3>
       <ul>
-        <li><a href='./teacheringwychuban.html'>文艺作品出版和发表业绩量化</a></li>
-        <li><a href='./teacheringzhanlan.html'>艺术展览与文艺演出业绩量化</a></li>
-        <li><a href='./teacheringhuojiang.html'>文艺作品获奖业绩量化</a></li>
+        <li><a href={% url 'teacher:teachers_chuban' %}>文艺作品出版和发表业绩量化</a></li>
+        <li><a href={% url 'teacher:teachers_zhanlan' %}>艺术展览与文艺演出业绩量化</a></li>
+        <li><a href={% url 'teacher:teachers_huojiang' %}>文艺作品获奖业绩量化</a></li>
       </ul>
       <h3 class="am-icon-gears"><em></em> <a href="#">学科建设业绩点</a></h3>
       <ul>
-        <li><a href='./teacheringxuewei.html'>学科建设业绩</a></li>
+        <li><a href={% url 'teacher:teachers_xuewei' %}>学科建设业绩</a></li>
         <!-- <li><a href='./teacheringxueke.html'>学科</a></li>
         <li><a href='./teacheringyanjius.html'>研究生培养</a></li> -->
       </ul>
@@ -130,7 +136,7 @@
     <div class="admin-biaoge">
       <div class="xinxitj">个人信息查询</div>
       <div class="reg_form clearfix">
-          <form>
+          <form action="{% url 'user:selfmessage' %}" method="post">
           <ul>
             <li>
               <label>学工号:</label>
@@ -144,7 +150,7 @@
             </li>
             <li>
               <label>现聘岗位:</label>
-              <input type="text" name="cpwd" id="cpwd" value="{{ user.professor}}">
+              <input type="text" name="professor" id="cpwd" value="{{ user.professor}}">
               <span class="error_tip">提示信息</span>
             </li>
             <li>
@@ -154,17 +160,13 @@
             </li>
             <li>
             <label>角色:</label>
-            <input type="text" name="email" id="email" value="{{ user.role.role_name}}">
+            <input type="text" name="role" id="email" value="{{ user.role.role_name}}">
               <span class="error_tip">提示信息</span>
             </li>
-            <!-- <li class="agreement">
-              <input type="checkbox" name="allow" id="allow" checked="checked">
-              <label>同意”中原工学院教师业绩量化系统使用协议“</label>
-              <span class="error_tip2">提示信息</span>
-            </li> -->
-            <!-- <li class="reg_sub">
-              <input type="submit" value="注 册" name="">
-            </li> -->
+
+              <li class="reg_sub">
+              <input type="submit" value="修改信息" name="">
+            </li>
           </ul>				
           </form>
         </div>

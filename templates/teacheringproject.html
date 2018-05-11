@@ -1,0 +1,90 @@
+{% extends 'teacheringindex.html' %}
+{% block body1 %}
+<div class=" admin-content">
+	
+		<div class="daohang">
+</div>
+	
+	
+
+
+<div class="admin">
+
+    <div class="admin-biaoge">
+      <div class="xinxitj">项目结业、评价业绩量化表</div>
+      <form action="{% url 'teacher:teachers_proj' %}" method="post" class="am-table">
+        <ul>
+          <li>1.组织单位</li>
+          <li>
+              {% for data in country %}
+            <input type="radio" name="country" value="{{ data.id }}">
+            <label>{{ data.country_name }}</label>
+              {% endfor %}
+
+            </li>
+            <li>2.结题评价 </li>
+            <li>
+            <input type="radio" name="checkbox2" value="合格">
+            <label>合格</label>
+            <input type="radio" name="checkbox2" value="良好">
+            <label>良好</label>
+            <input type="radio" name="checkbox2" value="优秀">
+            <label>优秀</label>
+            </li>
+            <li>3.评价</li>
+            <li>
+            <input type="radio" name="checkbox3" value="1">
+            <label>国内先进</label>
+            <input type="radio" name="checkbox3" value="2">
+            <label>国内领先</label>
+            <input type="radio" name="checkbox3" value="3">
+            <label>国际先进</label>
+            <input type="radio" name="checkbox3" value="4">
+            <label>国际领先</label>
+            </li>
+            <li>4.方向</li>
+            <li>
+            <input type="radio" name="checkbox4" value="1">
+            <label>自选</label>
+            <input type="radio" name="checkbox4" value="0">
+            <label>纵/横</label>
+            </li>
+            <li>5.入院经费是否高于10万元</li>
+            <li>
+            <input type="radio" name="checkbox5" value="1">
+            <label>是</label>
+            <input type="radio" name="checkbox5" value="0">
+            <label>否</label>
+            </li>
+            
+            <li>
+              <input type="submit" value="提交">
+            </li>
+        </ul>
+      </form>
+   
+    </div>
+    <div class="shuju">
+     
+      <script type="text/javascript">jQuery(".slideTxtBox").slide();</script> 
+   
+   
+   
+   
+   
+   
+   
+   
+</div>
+
+    <!-- <div class="foods">
+    	<ul>版权所有@2015 违反必究 </ul>
+    	<dl><a href="" title="返回头部" class="am-icon-btn am-icon-arrow-up"></a></dl>
+    </div> -->
+</div>
+
+</div>
+{% endblock %}
+
+
+

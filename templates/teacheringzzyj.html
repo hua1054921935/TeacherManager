@@ -1,0 +1,83 @@
+{% extends 'teacheringindex.html' %}
+{% block body1 %}
+
+<div class=" admin-content">
+	
+		<div class="daohang">
+</div>
+	
+	
+
+
+<div class="admin">
+
+    <div class="admin-biaoge">
+      <div class="xinxitj">著作业绩量化表</div>
+      <form action="{% url 'teacher:teachers_zzyj' %}" method="post" class="am-table">
+        <ul>
+          <li>1.出版社级别系数</li>
+          <li>
+              {% for data in dict1.nut_book_concern %}
+            <input type="radio" name="book_concern_name" value="{{ data.id }}">
+            <label>{{ data.book_concern_name }}</label>
+              {% endfor %}
+
+            </li>
+            <li>2.著书身份 </li>
+            <li>
+                {% for data1 in dict1.nut_book_auth %}
+            <input type="radio" name="book_auth_name" value="{{ data1.id }}">
+            <label>{{ data1.book_auth_name }}</label>
+                {% endfor %}
+
+            </li>
+            <li>3.出版社</li>
+            <li>
+            <input type="radio" name="checkbox3" value="1">
+            <label>出版号为4位</label>
+            <input type="radio" name="checkbox3" value="1">
+            <label>出版号为5位</label>
+            <input type="radio" name="checkbox3" value="1">
+            <label>百佳出版社</label>
+            </li>
+            <li>4.立项系数</li>
+            <li>
+                {% for data2 in dict1.nut_book_lixinag%}
+            <input type="radio" name="book_lixinag_name" value="{{ data2.id }}">
+            <label>{{ data2.book_lixinag_name }}</label>
+                {% endfor %}
+            </li>
+            
+            </li>
+            <li>
+            <label>6.输入著作字数(业绩点/万字)</label>
+            <input type="text" name="mount">
+            </li> 
+            <li>
+              <input type="submit" value="提交">
+            </li>
+        </ul>
+      </form>
+   
+    </div>
+    <div class="shuju">
+     
+      <script type="text/javascript">jQuery(".slideTxtBox").slide();</script> 
+   
+   
+   
+   
+   
+   
+   
+   
+</div>
+
+
+</div>
+
+</div>
+{% endblock %}
+
+
+

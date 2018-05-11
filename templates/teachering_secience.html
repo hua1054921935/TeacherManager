@@ -1,6 +1,32 @@
 {% extends 'teacheringindex.html' %}
 {% block body1 %}
+<script>
+    $(function(){
 
+        $('.add').click(function(){
+            var jidan_id=document.getElementById("jidian_id").innerHTML;
+            $.ajax({
+            url:"{% url 'teacher:teachers_science' %}",
+            type:"POST",
+            data: {id:jidan_id},
+
+
+            success: function (data) {
+                if (data.errno == 0) {
+                   alert('添加成功')
+                    window.location.href="{% url 'teacher:teachers_selcet' %}";
+
+                }
+                else  {
+                    alert('添加失败');
+                }
+            }
+        });
+
+        })
+
+    })
+</script>
 <div class=" admin-content">
 	
 		<div class="daohang">
@@ -25,11 +51,11 @@
         <tbody>
         {% for data in data_list %}
           <tr>
-            <td>{{ data.id }}</td>
+            <td id="jidian_id">{{ data.id }}</td>
             <td>{{ data.pro_level }}</td>
             <td>{{ data.pro_math }}</td>
             <td>{{ data.pro_jidian }}</td>
-			      <td><a href="###">添加</a></td>
+			      <td><a href="###" class="add">添加</a></td>
           </tr>
          {% endfor %}
 		  

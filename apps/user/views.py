@@ -51,7 +51,7 @@ class RegisterView(View):
         user.professor=professor
         user.email=email
         user.set_password(password)
-        user.is_active=1
+        user.is_active=0
         user.save()
 
         # 注册成功需要通过邮箱返回激活链接
@@ -164,7 +164,6 @@ class Login(View):
         # 4.返回响应结果
 
 
-# 个人信息展示
 class Role_select(View):
     def get(self,request):
         user=request.user
@@ -179,13 +178,54 @@ class Role_select(View):
     def post(self,requset):
         pass
 # /user/selfmessage
+
+
+# 个人信息展示
 class Usermessage(View):
     def get(self,request):
 
         user=request.user
 
+
         return render(request,'selfmessage.html',{'user':user})
     def post(self,request):
-        pass
+        user_id=request.user.id
+        username=request.POST.get('user_name')
+        email=request.POST.get('email')
+        user=User.objects.get(id=user_id)
+        user.username=username
+        user.email=email
+        user.save()
+        return redirect(reverse('user:selfmessage'))
 
 
+class Loginout(View):
+    def get(self,request):
+        user=request.user
+        logout(user)
+        return redirect(reverse('user:login'))
+
+class ActiveView(View):
+    """激活"""
+    def get(self, request, token):
+        """激活处理"""
+        # 进行解密
+        serializer = Serializer(settings.SECRET_KEY, 3600)
+
+        try:
+            info = serializer.loads(token)
+
+            # 获取待激活用户的id
+            user_id = info['confirm']
+
+            # 激活用户
+            user = User.objects.get(id=user_id)
+            user.is_active = 1
+            user.save()
+
+            # 返回应答: 跳转到登录页面
+            return redirect(reverse('user:login'))
+        except Exception as e:
+            # 激活链接已失效
+            # 实际开发：显示页面告诉用户激活链接已失效，让用户点击链接在发送一封激活邮件
+            return HttpResponse('<h1>激活链接已失效</h1>')
