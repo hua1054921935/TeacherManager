@@ -8,3 +8,10 @@ class Scinece(View):
         pass
     def post(self,request):
         pass
+
+
+class ShowData(View):
+    def get(self):
+        pass
+    def post(self):
+        pass

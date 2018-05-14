@@ -85,11 +85,13 @@ class Excel_get(View):
         datas=User.objects.all()
         wbname='全部数据'
         shellname='表格1'
-        filelds = ['学工号','邮箱','职称']
+        filelds = ['学工号','邮箱','职称','绩点']
         excel_data=[]
         for data in datas:
             li=[]
-            user_num=data.user_num
+            user_num=data.username
+            # 获取当前用户的业绩点
+
             email=data.email
             professor=data.professor
             li.append(user_num)
@@ -130,9 +132,11 @@ class Login(View):
         print(usernum,pwd,role_id)
 
         # 2.校验参数
-        if not all([usernum,pwd,role_id]):
+        if not all([usernum,pwd,role_id]) :
             print('ddddd')
             return render(request,'register.html')
+        if role_id=='0':
+            return render(request, 'register.html')
         # 3.逻辑处理
         # print(usernum,pwd)
         user=authenticate(username=usernum,password=pwd)
@@ -201,8 +205,8 @@ class Usermessage(View):
 
 class Loginout(View):
     def get(self,request):
-        user=request.user
-        logout(user)
+        # user=request.user
+        logout(request)
         return redirect(reverse('user:login'))
 
 class ActiveView(View):

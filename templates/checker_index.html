@@ -37,7 +37,14 @@
 
  </li>
 
-    <li class="am-hide-sm-only" style="float: right;"><a href="./login.html" >登录</a></li>
+    {% if user.is_authenticated  %}
+        <li class="am-hide-sm-only" style="float: right;"><a href={% url 'user:loginout' %} >退出</a></li>
+        <li class="am-hide-sm-only" style="float: right;"><a href='###'>{{ user.username }}</a></li>
+
+        {% else %}
+        <li class="am-hide-sm-only" style="float: right;"><a href={% url 'user:register' %} >注册</a></li>
+        <li class="am-hide-sm-only" style="float: right;"><a href={% url 'user:login' %} >登录</a></li>
+    {% endif %}
     </ul>
   </div>
 </header>

@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 import random
 import json
+
 from django.core.urlresolvers import reverse
 from django.views.generic import View
 from .models import Teacher_work,Teacher_pingtai,Book_level,Book_lixiang,Book_auth,Work_rate_jidian,Work_count,Nature_keyan,Thesis_sci,Thesis_cscd,Thesis_ei,Intellectual,Nut_book_auth,Nut_book_concern,Nut_book_lixinag,End_pingjia,Country,End_pro,Science,Reward_level1

@@ -33,9 +33,11 @@ def save_data_excel(data,fields,shellname,wbname):
 
 
 
+
 if __name__ == '__main__':
         wbname='新建'
         fields=['姓名','性别','年龄']
         data=[['1','2','3']]
         shellname='表格1'
         save_data_excel(data,fields,shellname,wbname)
+        # readexl()

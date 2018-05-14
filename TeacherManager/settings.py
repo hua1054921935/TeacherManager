@@ -41,7 +41,8 @@ INSTALLED_APPS = (
     'apps.checker',
     'apps.user',
     'apps.register',
-    'apps.teacher'
+    'apps.teacher',
+    'data_io'
 )
 # AUTHENTICATION_BACKENDS = (
 #     'django.contrib.auth.backends.ModelBackend',
@@ -152,3 +153,4 @@ CACHES = {
 # 设置redis存储django的session信息
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
+LOGIN_URL='http://127.0.0.1:8000/user/'
