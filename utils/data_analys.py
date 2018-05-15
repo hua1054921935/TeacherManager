@@ -36,3 +36,18 @@ def scan_files(directory, prefix=None, postfix=None):
 
 # a='utils/data/2017-11-25/checking.csv'
 # print(a.split('/'))
+list1 = scan_files('data')
+list1.sort()
+
+for data in list1:
+
+    name = data.split('/')[2]
+
+    if name == 'email.csv':
+        print(name)
+
+        df = pandas.read_csv(data,encoding = 'ISO-8859-1')
+        df.drop([0], inplace=True)
+        df.columns =['time','proto','sip','sport','dip','dport','from','to','subject']
+        counts=df['sip'].value_counts()
+        print(len(counts))
