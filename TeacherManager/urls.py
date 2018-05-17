@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^scence/',include('apps.register.urls',namespace='scence')),
     url(r'^teacher/',include('apps.teacher.urls',namespace='teacher')),
     url(r'^analysis/', include('data_io.urls', namespace='analysis')),
+    url(r'^checker/', include('apps.checker.urls', namespace='checker')),
 
 ]

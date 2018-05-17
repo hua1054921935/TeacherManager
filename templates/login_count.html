@@ -8,13 +8,7 @@
 
 </head>
 <body>
-{# <div>#}
-{#10     <p><a href="/user/output" name="导出.xlsx">导出csv</a></p>#}
-{##}
-{#11 </div>#}
-<div>
- <p>11月每天登陆失败情况统计</p>
-</div>
+
 
 <div id="echarts_post" style="width:800px;height:600px;">
 
@@ -25,21 +19,43 @@
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('echarts_post'));
         // 指定图表的配置项和数据
-        var option = {
-            series: {
-                type: 'pie',
-                selectedMode: 'single',
-                data: [
+        option = {
+            title: {
+                text: '11月每天登陆失败情况统计',
 
-                    {% for i in list2 %}
-                        {name: {{ i.flag }} , value: {{i.count}}},
-                    {% endfor %}
-
-
-                ]
-            }
-
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['2017-11-1', '2017-11-2', '2017-11-3', '2017-11-4', '2017-11-5', '2017-11-6', '2017-11-7', '2017-11-8', '2017-11-9', '2017-11-10', '2017-11-11', '2017-11-12', '2017-11-13', '2017-11-14', '2017-11-15', '2017-11-16', '2017-11-17', '2017-11-18', '2017-11-19', '2017-11-20', '2017-11-21', '2017-11-22', '2017-11-23', '2017-11-24', '2017-11-25', '2017-11-26', '2017-11-27', '2017-11-28', '2017-11-29', '2017-11-30']
+            },
+            series: [
+                {
+                    name: '日期对应错误次数',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '60%'],
+                    data: [
+                        {% for i in list2 %}
+                            {name: "{{ i.flag }}", value: {{i.count}}},
+                        {% endfor %}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
         };
+
 
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);

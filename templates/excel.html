@@ -12,9 +12,7 @@
 {#10     <p><a href="/user/output" name="导出.xlsx">导出csv</a></p>#}
 {##}
 {#11 </div>#}
-<div>
- <p>11月每天迟到人数统计</p>
-</div>
+
 
 <div id="echarts_post" style="width:800px;height:600px;">
 
@@ -28,7 +26,11 @@
 
 
         var option = {
+            title: {
+                text: '11月每天迟到人数统计',
 
+                x: 'left'
+            },
             tooltip: {},
             legend: {
                 data:['迟到人数']
