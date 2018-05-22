@@ -52,8 +52,9 @@
 <div class="am-cf admin-main"> 
 
 <div class="nav-navicon admin-main admin-sidebar">
-    
-  <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"><a href="./checker_index.html">审核人员主页</a> </div>
+
+    <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"><a
+            href={% url 'checker:checker_index' %}>审核人员主页</a></div>
   <div class="sideMenu">
     <h3 class="am-icon-flag"><em></em> <a href="#">教师业绩查询</a></h3>
       <ul>
@@ -67,7 +68,7 @@
       </ul>
       <h3 class="am-icon-users"><em></em> <a href="#">数据展示</a></h3>
       <ul>
-        <li><a href='./checker_update.html'>业绩展示</a> </li>
+          <li><a href={% url 'checker:showdata' %}>业绩展示</a></li>
       </ul>
 
   </div>
@@ -105,8 +106,15 @@
 <div class="admin">
 
     <div class="admin-biaoge">
-      <div class="xinxitj">教师业绩录入主页</div>
+        <div class="xinxitj">审核员主页</div>
       <img src={% static 'teachering/assets/img/night.jpg' %}>
+        <div class="index" style="float: left">
+            <p>业绩录入主要功能</p>
+            <p>1.教师业绩查询</p>
+            <p>2.教师业绩审核</p>
+            <p>3.数据分析</p>
+
+        </div>
      
       
    

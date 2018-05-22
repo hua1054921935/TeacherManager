@@ -1,5 +1,8 @@
 from django.db import models
+
 from apps.user.models import User
+
+
 # Create your models here.
 # 教学工作量
 class Teacher_work(models.Model):
@@ -264,3 +267,14 @@ class Pingtai(models.Model):
 
 # 自然科学类
 
+
+# class Work_jidian(models.Model):
+#     user = models.ForeignKey('User',verbose_name='对应的人')
+#     count_jidians = models.IntegerField(default=0, verbose_name='个人业绩点')
+#     rate_jidians = models.ForeignKey('Work_rate_jidian', verbose_name='额定业绩点')
+#
+#     class Meta:
+#         db_table = 'work_jidan'
+#         verbose_name = '业绩点统计'
+#         verbose_name_plural = verbose_name
+#

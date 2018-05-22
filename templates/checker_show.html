@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% load static from staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据分析</title>
+    <script type="text/javascript" src="{% static 'teachering/assets/js/echarts.js' %}"></script>
+
+</head>
+<body>
+
+<div id="echarts_post" style="width:800px;height:600px;">
+    {#<p>{{ username }}</p>#}
+</div>
+
+
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+
+    var myChart = echarts.init(document.getElementById('echarts_post'));
+
+
+    // 指定图表的配置项和数据
+
+
+    {#        var option = {#}
+    {#            title: {#}
+    {#                text: '教职工业绩点统计',#}
+    {##}
+    {#                x: 'left'#}
+    {#            },#}
+    {#            tooltip: {},#}
+    {#            legend: {#}
+    {#                data:['业绩点']#}
+    {#            },#}
+    {#            xAxis: {#}
+    {#                data: ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30']#}
+    {#                data: {{ username }}#}
+    {#            },#}
+    {#            yAxis: {},#}
+    {#            series#}
+    {#                : [{#}
+    {#                name: '迟到人数',#}
+    {#                type: 'bar',#}
+    {#                data: {{ jiidan }}#}
+    {#            }]#}
+    {#        };#}
+    option = {
+        title: {
+            text: '教职工业绩点统计',
+
+            x: 'left'
+        },
+        xAxis: {
+            type: 'category',
+            data: {{ username }},
+            name: "教职工号"
+            {#                    data: ['1','2','3','4','5']#}
+
+        },
+        yAxis: {
+            type: 'value',
+            name: '教师业绩点'
+        },
+        series: [{
+
+            data: {{ jiidan }},
+            type: 'line'
+
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+</body>
+</html>

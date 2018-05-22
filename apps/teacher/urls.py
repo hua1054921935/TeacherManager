@@ -1,9 +1,12 @@
-
 from django.conf.urls import  url
 from django.contrib.auth.decorators import login_required
-from .views import Teacher_selcet,Teachers_book,Teachers_pingtai,Teachers_yan,Teachers_science,Teachers_thesis,Teachers_chanquan,Teachers_zzyj,Teachers_proj,Teachers_reward,Teachers_scpitai,Teachers_chuban,Teachers_zhanlan,Teachers_huojiang,Teachers_xuewei
+
+from .views import Teacher_index, Teacher_selcet, Teachers_book, Teachers_pingtai, Teachers_yan, Teachers_science, \
+    Teachers_thesis, Teachers_chanquan, Teachers_zzyj, Teachers_proj, Teachers_reward, Teachers_scpitai, \
+    Teachers_chuban, Teachers_zhanlan, Teachers_huojiang, Teachers_xuewei
 
 urlpatterns = [
+    url(r'^teachers_index', login_required(Teacher_index.as_view()), name='teachers_index'),
     url(r'^teachers_work',login_required(Teachers_yan.as_view()),name='teachers_work'),
     url(r'^teachers_selcet',login_required(Teacher_selcet.as_view()),name='teachers_selcet'),
     url(r'^teachers_pingtai',login_required(Teachers_pingtai.as_view()),name='teachers_pingtai'),

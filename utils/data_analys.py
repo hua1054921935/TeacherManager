@@ -1,7 +1,5 @@
 import os
 
-import pandas
-
 
 # os.chdir('data/2017-11-01')
 # # print(os.getcwd())
@@ -28,22 +26,22 @@ def scan_files(directory, prefix=None, postfix=None):
 
     return files_list
 
-
-list1 = scan_files('data')
-list1.sort()
-
-for data in list1:
-
-    name = data.split('/')[2]
-
-    if name == 'email.csv':
-        print(name)
-
-        df = pandas.read_csv(data,encoding = 'ISO-8859-1')
-        df.drop([0], inplace=True)
-        df.columns =['time','proto','sip','sport','dip','dport','from','to','subject']
-        counts=df['sip'].value_counts()
-        # print(len(counts))
-
-list3 = ["2017-11-%s" % i for i in range(1, 31)]
-print(list3)
+#
+# list1 = scan_files('data')
+# list1.sort()
+#
+# for data in list1:
+#
+#     name = data.split('/')[2]
+#
+#     if name == 'email.csv':
+#         print(name)
+#
+#         df = pandas.read_csv(data,encoding = 'ISO-8859-1')
+#         df.drop([0], inplace=True)
+#         df.columns =['time','proto','sip','sport','dip','dport','from','to','subject']
+#         counts=df['sip'].value_counts()
+#         # print(len(counts))
+#
+# list3 = ["2017-11-%s" % i for i in range(1, 31)]
+# print(list3)

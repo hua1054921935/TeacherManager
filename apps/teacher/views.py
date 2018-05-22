@@ -1,11 +1,14 @@
-from django.shortcuts import render,redirect
-from django.http import HttpResponse
-import random
 import json
 
 from django.core.urlresolvers import reverse
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from django.views.generic import View
-from .models import Teacher_work,Teacher_pingtai,Book_level,Book_lixiang,Book_auth,Work_rate_jidian,Work_count,Nature_keyan,Thesis_sci,Thesis_cscd,Thesis_ei,Intellectual,Nut_book_auth,Nut_book_concern,Nut_book_lixinag,End_pingjia,Country,End_pro,Science,Reward_level1
+
+from .models import Teacher_work, Teacher_pingtai, Book_level, Book_lixiang, Book_auth, Work_rate_jidian, Work_count, \
+    Nature_keyan, Thesis_sci, Thesis_cscd, Thesis_ei, Intellectual, Nut_book_auth, Nut_book_concern, Nut_book_lixinag, \
+    Country, Science
+
 
 # Create your views here.
 # 教师业绩量化
@@ -16,7 +19,7 @@ class Teacher_selcet(View):
         username=user.username
         dict1 = {}
         dict1['username']=username    #     获取该老师对应的业绩信息
-        teacher_count=Work_count.objects.filter(usernum=username)
+        teacher_count = Work_count.objects.filter(usernum=user.id)
 
         count=0
         for data in teacher_count:
@@ -25,7 +28,7 @@ class Teacher_selcet(View):
             dict1['teacher_jidian']=rate_jidian.teach_jiidans
             dict1['secien_jidian']=rate_jidian.scien_jiidans
         dict1['count']=count
-
+        print(dict1)
         return render(request,'teachering_select.html',{'data':dict1})
     def post(self,request):
         pass
@@ -42,7 +45,7 @@ class Teachers_yan(View):
         # 获取业绩点
         book_count=Teacher_work.objects.get(id=jidna_id).course_jidian
         user=request.user
-        username = user.username
+        username = user.id
         professor = user.professor
 
         rate_jidians = Work_rate_jidian.objects.get(pro_name=professor)
@@ -60,7 +63,7 @@ class Teachers_pingtai(View):
         print(jidna_id)
         book_count=Teacher_pingtai.objects.get(id=jidna_id).pro_huozhun
         user = request.user
-        username = user.username
+        username = user.id
         professor = user.professor
 
         rate_jidians = Work_rate_jidian.objects.get(pro_name=professor)
@@ -104,7 +107,7 @@ class Teachers_book(View):
 
         book_count=book_auth_jidian*book_mount*book_level_math*book_lixiang_maths*zaiban_math
         # 存入对应的业绩表中
-        username=user.username
+        username = user.id
         professor=user.professor
 
         rate_jidians=Work_rate_jidian.objects.get(pro_name=professor)
@@ -130,7 +133,7 @@ class Teachers_science(View):
         # 获取业绩点
         book_count = Nature_keyan.objects.get(id=jidna_id).pro_jidian
         user = request.user
-        username = user.username
+        username = user.id
         professor = user.professor
 
         rate_jidians = Work_rate_jidian.objects.get(pro_name=professor)
@@ -187,7 +190,7 @@ class Teachers_thesis(View):
         else:
             math=0.3
         book_count=max_jidna*math
-        username=user.username
+        username = user.id
         professor = user.professor
 
         rate_jidians = Work_rate_jidian.objects.get(pro_name=professor)
@@ -219,7 +222,7 @@ class Teachers_chanquan(View):
 
         book_count=math*jiidan
 
-        username = user.username
+        username = user.id
         professor = user.professor
 
         rate_jidians = Work_rate_jidian.objects.get(pro_name=professor)
@@ -255,8 +258,7 @@ class Teachers_zzyj(View):
 
         book_count=float(mount)*math_concern*jidian*math_liixnag
 
-
-        username = user.username
+        username = user.id
         professor = user.professor
 
         rate_jidians = Work_rate_jidian.objects.get(pro_name=professor)
@@ -281,7 +283,7 @@ class Teachers_proj(View):
 
         book_count=float(country)*10
 
-        username = user.username
+        username = user.id
         professor = user.professor
 
         rate_jidians = Work_rate_jidian.objects.get(pro_name=professor)
@@ -331,3 +333,10 @@ class Teachers_xuewei(View):
         return render(request,'teacheringxuewei.html')
     def post(self,request):
         pass
+
+
+# 主页展示
+# /teacher/index
+class Teacher_index(View):
+    def get(self, request):
+        return render(request, 'teacheringindex.html')

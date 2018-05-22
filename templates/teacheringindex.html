@@ -54,7 +54,8 @@
 
 <div class="nav-navicon admin-main admin-sidebar">
 
-    <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"><a href="###">教师业绩量录入主页</a></div>
+    <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"><a
+            href={% url 'teacher:teachers_index' %}>教师业绩量录入主页</a></div>
   <div class="sideMenu">
     <h3 class="am-icon-flag"><em></em> <a href="#">教师个人信息</a></h3>
     <ul>
@@ -136,7 +137,7 @@
     <div class="admin-biaoge">
       <div class="xinxitj">教师业绩录入主页</div>
       <img src={% static 'teachering/assets/img/night.jpg' %}>
-        {#        <img style="float: right" src={% static 'teachering/assets/img/night.jpg' %}>#}
+
         <div class="index" style="float: left">
             <p>业绩录入主要功能</p>
             <p>1.个人信息</p>
@@ -162,10 +163,7 @@
    
 </div>
 
-    <!-- <div class="foods">
-    	<ul>版权所有@2015 违反必究 </ul>
-    	<dl><a href="" title="返回头部" class="am-icon-btn am-icon-arrow-up"></a></dl>
-    </div> -->
+
 </div>
 
 </div>

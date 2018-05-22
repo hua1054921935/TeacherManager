@@ -1,16 +1,18 @@
-from django.shortcuts import render,redirect
-from django.http import HttpResponse
-from django.views.generic import View
-from django.core.urlresolvers import reverse
 import re
 
-from django.contrib.auth import authenticate,login,logout
 from django.conf import settings
-from apps.user.models import User,Role
+from django.contrib.auth import authenticate, login, logout
+from django.core.urlresolvers import reverse
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.views.generic import View
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+
+from apps.user.models import User, Role
 from celery_tasks.tasks import send_mail_register
 from utils import xlwt
-from .backends import UsernumBackend
+
+
 # Create your views here.
 
 class RegisterView(View):
@@ -42,9 +44,7 @@ class RegisterView(View):
             return render(request, 'register.html', {'errmsg': '用户名已存在'})
 
         # 3.业务处理,进行注册操作
-        role=Role.objects.get(id=role_id)
-
-
+        role = Role.objects.get(id=role_id)
         user=User()
         user.username=user_num
         user.role=role
