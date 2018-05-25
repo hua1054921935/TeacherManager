@@ -37,7 +37,14 @@
 
  </li>
 
-    <li class="am-hide-sm-only" style="float: right;"><a href="./login.html" >登录</a></li>
+    {% if user.is_authenticated  %}
+        <li class="am-hide-sm-only" style="float: right;"><a href={% url 'user:loginout' %} >退出</a></li>
+        <li class="am-hide-sm-only" style="float: right;"><a href='###'>{{ user.username }}</a></li>
+
+        {% else %}
+        <li class="am-hide-sm-only" style="float: right;"><a href={% url 'user:register' %} >注册</a></li>
+        <li class="am-hide-sm-only" style="float: right;"><a href={% url 'user:login' %} >登录</a></li>
+    {% endif %}
     </ul>
   </div>
 </header>
@@ -45,8 +52,9 @@
 <div class="am-cf admin-main"> 
 
 <div class="nav-navicon admin-main admin-sidebar">
-    
-  <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"><a href="./checker_index.html">审核人员主页</a> </div>
+
+    <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"><a
+            href={% url 'checker:checker_index' %}>审核人员主页</a></div>
   <div class="sideMenu">
     <h3 class="am-icon-flag"><em></em> <a href="#">教师业绩查询</a></h3>
       <ul>
@@ -60,29 +68,10 @@
       </ul>
       <h3 class="am-icon-users"><em></em> <a href="#">数据展示</a></h3>
       <ul>
-        <li><a href='./checker_update.html'>业绩展示</a> </li>
+          <li><a href={% url 'checker:showdata' %}>业绩展示</a></li>
       </ul>
-{#      <h3 class="am-icon-volume-up"><em></em> <a href="#">人文社会科学科研业绩</a></h3>#}
-{#      <ul>#}
-{#        <li><a href='./teachering_secience.html'>科研项目业绩量化</a> </li>#}
-{#        <li><a href='./teacheringlunwen.html'>论文业绩量化</a></li>#}
-{#        <li><a href='./teacheringzzyj.html'>著作业绩量化</a>  </li>#}
-{#        <li><a href='./teacheringproject1.html'>项目结题业绩量化</a></li>#}
-{#        <li><a href='./teacheringpingtai.html'>科研项目业绩量化</a></li>#}
-{#      </ul>#}
-{#      <h3 class="am-icon-gears"><em></em> <a href="#">文学艺术类作品业绩点</a></h3>#}
-{#      <ul>#}
-{#        <li><a href='./teacheringwychuban.html'>文艺作品出版和发表业绩量化</a></li>#}
-{#        <li><a href='./teacheringzhanlan.html'>艺术展览与文艺演出业绩量化</a></li>#}
-{#        <li><a href='./teacheringhuojiang.html'>文艺作品获奖业绩量化</a></li>#}
-{#      </ul>#}
-{#      <h3 class="am-icon-gears"><em></em> <a href="#">学科建设业绩点</a></h3>#}
-{#      <ul>#}
-{#        <li><a href='./teacheringxuewei.html'>学科建设业绩</a></li>#}
-{#        <!-- <li><a href='./teacheringxueke.html'>学科</a></li>#}
-{#        <li><a href='./teacheringyanjius.html'>研究生培养</a></li> -->#}
-{#      </ul>#}
-    </div>
+
+  </div>
     <!-- sideMenu End --> 
     
     <script type="text/javascript">
@@ -95,7 +84,7 @@
 				defaultPlay:true,//默认是否执行效果（默认true）
 				returnDefault:false //鼠标从.sideMen移走后返回默认状态（默认false）
 				});
-		</script> 
+    </script>
 
     
     
@@ -117,8 +106,15 @@
 <div class="admin">
 
     <div class="admin-biaoge">
-      <div class="xinxitj">教师业绩录入主页</div>
+        <div class="xinxitj">审核员主页</div>
       <img src={% static 'teachering/assets/img/night.jpg' %}>
+        <div class="index" style="float: left">
+            <p>业绩录入主要功能</p>
+            <p>1.教师业绩查询</p>
+            <p>2.教师业绩审核</p>
+            <p>3.数据分析</p>
+
+        </div>
      
       
    

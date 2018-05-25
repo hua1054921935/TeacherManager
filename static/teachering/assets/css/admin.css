@@ -4,7 +4,15 @@
 .admin-header-list{  float: right;}
 .admin-main{background: #2a3542}
 .admin-menu{position: fixed;bottom: 30px;right: 20px}
-.admin-sidebar{width: 210px;min-height: 100%;padding: 10px;font-size: 1.2rem;  left: 0; top: 50px;}
+
+.admin-sidebar {
+  width: 210px;
+  min-height: 100%;
+  padding: 10px;
+  font-size: 15px;
+  left: 0;
+  top: 50px;
+}
 .admin-sidebar-list{margin-bottom: 0}
 .admin-sidebar-list li a{color: #fff;padding-left: 24px}
 .admin-sidebar-list li:first-child{border-top: none}

@@ -45,7 +45,7 @@
         {% else %}
         <li class="am-hide-sm-only" style="float: right;"><a href={% url 'user:register' %} >注册</a></li>
         <li class="am-hide-sm-only" style="float: right;"><a href={% url 'user:login' %} >登录</a></li>
-        {% endif %}
+    {% endif %}
     </ul>
   </div>
 </header>
@@ -53,8 +53,9 @@
 <div class="am-cf admin-main"> 
 
 <div class="nav-navicon admin-main admin-sidebar">
-    
-  <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"><a href="./teacheringindex.html">教师业绩量录入主页</a> </div>
+
+    <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"><a
+            href={% url 'teacher:teachers_index' %}>教师业绩量录入主页</a></div>
   <div class="sideMenu">
     <h3 class="am-icon-flag"><em></em> <a href="#">教师个人信息</a></h3>
     <ul>
@@ -67,7 +68,7 @@
           <li><a href={% url 'teacher:teachers_pingtai' %}>教学平台业绩量化</a></li>
           <li><a href={% url 'teacher:teachers_book' %}>教材业绩量化</a></li>
       </ul>
-      <h3 class="am-icon-users"><em></em> <a href="#">自然科学业绩</a></h3>
+      <h3 class="am-icon-users"><em></em> <a href="#">自然科学</a></h3>
       <ul>
         <li><a href={% url 'teacher:teachers_science' %}>科研项目业绩量化</a> </li>
         <li><a href={% url 'teacher:teachers_thesis' %}>论文业绩量化</a></li>
@@ -79,7 +80,7 @@
         <!-- <li>会员推荐图</li>
         <li>推荐列表</li> -->
       </ul>
-      <h3 class="am-icon-volume-up"><em></em> <a href="#">人文社会科学科研业绩</a></h3>
+      <h3 class="am-icon-volume-up"><em></em> <a href="#">人文社会科学</a></h3>
       <ul>
         <li><a href={% url 'teacher:teachers_science' %}>科研项目业绩量化</a> </li>
         <li><a href={% url 'teacher:teachers_thesis' %}>论文业绩量化</a></li>
@@ -87,13 +88,13 @@
         <li><a href={% url 'teacher:teachers_proj' %}>项目结题业绩量化</a></li>
         <li><a href={% url 'teacher:teachers_scpitai' %}>科研项目业绩量化</a></li>
       </ul>
-      <h3 class="am-icon-gears"><em></em> <a href="#">文学艺术类作品业绩点</a></h3>
+      <h3 class="am-icon-gears"><em></em> <a href="#">文学艺术类</a></h3>
       <ul>
         <li><a href={% url 'teacher:teachers_chuban' %}>文艺作品出版和发表业绩量化</a></li>
         <li><a href={% url 'teacher:teachers_zhanlan' %}>艺术展览与文艺演出业绩量化</a></li>
         <li><a href={% url 'teacher:teachers_huojiang' %}>文艺作品获奖业绩量化</a></li>
       </ul>
-      <h3 class="am-icon-gears"><em></em> <a href="#">学科建设业绩点</a></h3>
+      <h3 class="am-icon-gears"><em></em> <a href="#">学科建设业</a></h3>
       <ul>
         <li><a href={% url 'teacher:teachers_xuewei' %}>学科建设业绩</a></li>
         <!-- <li><a href='./teacheringxueke.html'>学科</a></li>
@@ -136,17 +137,18 @@
     <div class="admin-biaoge">
       <div class="xinxitj">教师业绩录入主页</div>
       <img src={% static 'teachering/assets/img/night.jpg' %}>
-        <p>业绩录入主要功能</p>
-        <p>1.个人信息</p>
-        <p>2.教研教材业绩录入</p>
-        <p>3.自然学科业绩录入</p>
-        <p>4.人文社会科学业绩录入</p>
-        <p>5.文学艺术</p>
-        <p>6.学科建设</p>
 
-     
-      
-   
+        <div class="index" style="float: left">
+            <p>业绩录入主要功能</p>
+            <p>1.个人信息</p>
+            <p>2.教研教材业绩录入</p>
+            <p>3.自然学科业绩录入</p>
+            <p>4.人文社会科学业绩录入</p>
+            <p>5.文学艺术</p>
+            <p>6.学科建设</p>
+        </div>
+
+
     </div>
     <div class="shuju">
      
@@ -161,10 +163,7 @@
    
 </div>
 
-    <!-- <div class="foods">
-    	<ul>版权所有@2015 违反必究 </ul>
-    	<dl><a href="" title="返回头部" class="am-icon-btn am-icon-arrow-up"></a></dl>
-    </div> -->
+
 </div>
 
 </div>
