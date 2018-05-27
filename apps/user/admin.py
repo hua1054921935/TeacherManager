@@ -1,6 +1,6 @@
 from django.contrib import admin
-
-from .models import User, Role
+from utils.matlib import read_xls
+from .models import User,Role,ImportFile
 
 
 # Register your models here.
@@ -17,6 +17,16 @@ class UserAdmin(admin.ModelAdmin):
 class RoleAdmin(admin.ModelAdmin):
     list_display = ['id', 'role_name']
 
+class ImportFileAdmin(admin.ModelAdmin):
+    list_display = ['id','file','name']
+    # fields = ('file','name')
+    list_filter = ['name', ]
+    def save_model(self, request, obj, form, change):
+        re = super(ImportFileAdmin, self).save_model(request, obj, form, change)
+        data=read_xls(self,request, obj, change)
+        print(data)
+        return re
 
 admin.site.register(User, UserAdmin)
 admin.site.register(Role, RoleAdmin)
+admin.site.register(ImportFile,ImportFileAdmin)

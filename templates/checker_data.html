@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-{% load static from staticfiles %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>数据分析</title>
-    <script type="text/javascript" src="{% static 'teachering/assets/js/echarts.js' %}"></script>
+{% extends 'checker_index.html' %}
 
-</head>
-<body>
 
-<div id="echarts_post" style="width:800px;height:600px;">
+
+{% block body1 %}
+    <div id="echarts_post" style="width:800px;height:600px;">
     {#<p>{{ username }}</p>#}
-</div>
+    </div>
 
 
 <script type="text/javascript">
@@ -49,5 +43,4 @@
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
 </script>
-</body>
-</html>
+{% endblock %}

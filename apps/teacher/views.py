@@ -19,16 +19,15 @@ class Teacher_selcet(View):
         username=user.username
         dict1 = {}
         dict1['username']=username    #     获取该老师对应的业绩信息
-        teacher_count = Work_count.objects.filter(usernum=user.id)
-
-        count=0
-        for data in teacher_count:
-            count=count+data.count_jidians
-            rate_jidian=data.rate_jidians
+        try:
+            teacher_count = Work_count.objects.get(usernum=user.id)
+            count=teacher_count.count_jidians
+            rate_jidian=teacher_count.rate_jidians
             dict1['teacher_jidian']=rate_jidian.teach_jiidans
             dict1['secien_jidian']=rate_jidian.scien_jiidans
-        dict1['count']=count
-        print(dict1)
+            dict1['count']=count
+        except Exception as e:
+            return redirect(reverse('teacher:teachers_index'))
         return render(request,'teachering_select.html',{'data':dict1})
     def post(self,request):
         pass
@@ -47,9 +46,18 @@ class Teachers_yan(View):
         user=request.user
         username = user.id
         professor = user.professor
-
         rate_jidians = Work_rate_jidian.objects.get(pro_name=professor)
-        Work_count.objects.create(usernum=username, count_jidians=book_count, rate_jidians=rate_jidians)
+        teacher_count = Work_count.objects.filter(usernum=user.id)
+        if teacher_count:
+            count = 0
+            for data in teacher_count:
+                count = count + data.count_jidians
+            book_count = book_count + count
+
+            teacher_count.update(usernum=username, count_jidians=book_count, rate_jidians=rate_jidians)
+        else:
+            Work_count.objects.create(usernum=username, count_jidians=book_count, rate_jidians=rate_jidians)
+
         data={'errno':0}
         return HttpResponse(json.dumps(data),content_type='application/json')
 
@@ -65,9 +73,17 @@ class Teachers_pingtai(View):
         user = request.user
         username = user.id
         professor = user.professor
-
         rate_jidians = Work_rate_jidian.objects.get(pro_name=professor)
-        Work_count.objects.create(usernum=username, count_jidians=book_count, rate_jidians=rate_jidians)
+        teacher_count = Work_count.objects.filter(usernum=user.id)
+        if teacher_count:
+            count = 0
+            for data in teacher_count:
+                count = count + data.count_jidians
+            book_count = book_count + count
+
+            teacher_count.update(usernum=username, count_jidians=book_count, rate_jidians=rate_jidians)
+        else:
+            Work_count.objects.create(usernum=username, count_jidians=book_count, rate_jidians=rate_jidians)
         data = {'errno': 0}
         return HttpResponse(json.dumps(data), content_type='application/json')
 
@@ -109,11 +125,17 @@ class Teachers_book(View):
         # 存入对应的业绩表中
         username = user.id
         professor=user.professor
+        rate_jidians = Work_rate_jidian.objects.get(pro_name=professor)
+        teacher_count = Work_count.objects.filter(usernum=user.id)
+        if teacher_count:
+            count = 0
+            for data in teacher_count:
+                count = count + data.count_jidians
+            book_count = book_count + count
 
-        rate_jidians=Work_rate_jidian.objects.get(pro_name=professor)
-
-        # teacher_count=Teacher_count()
-        Work_count.objects.create(usernum=username,count_jidians=book_count,rate_jidians=rate_jidians)
+            teacher_count.update(usernum=username, count_jidians=book_count, rate_jidians=rate_jidians)
+        else:
+            Work_count.objects.create(usernum=username, count_jidians=book_count, rate_jidians=rate_jidians)
 
 
         return redirect(reverse('teacher:teachers_selcet'))
@@ -135,9 +157,17 @@ class Teachers_science(View):
         user = request.user
         username = user.id
         professor = user.professor
-
         rate_jidians = Work_rate_jidian.objects.get(pro_name=professor)
-        Work_count.objects.create(usernum=username, count_jidians=book_count, rate_jidians=rate_jidians)
+        teacher_count = Work_count.objects.filter(usernum=user.id)
+        if teacher_count:
+            count = 0
+            for data in teacher_count:
+                count = count + data.count_jidians
+            book_count = book_count + count
+
+            teacher_count.update(usernum=username, count_jidians=book_count, rate_jidians=rate_jidians)
+        else:
+            Work_count.objects.create(usernum=username, count_jidians=book_count, rate_jidians=rate_jidians)
         data = {'errno': 0}
         return HttpResponse(json.dumps(data), content_type='application/json')
 #论文
@@ -192,9 +222,17 @@ class Teachers_thesis(View):
         book_count=max_jidna*math
         username = user.id
         professor = user.professor
-
         rate_jidians = Work_rate_jidian.objects.get(pro_name=professor)
-        Work_count.objects.create(usernum=username, count_jidians=book_count, rate_jidians=rate_jidians)
+        teacher_count = Work_count.objects.filter(usernum=user.id)
+        if teacher_count:
+            count = 0
+            for data in teacher_count:
+                count = count + data.count_jidians
+            book_count = book_count + count
+
+            teacher_count.update(usernum=username, count_jidians=book_count, rate_jidians=rate_jidians)
+        else:
+            Work_count.objects.create(usernum=username, count_jidians=book_count, rate_jidians=rate_jidians)
         return redirect(reverse('teacher:teachers_selcet'))
 
 # 知识产权
@@ -224,9 +262,17 @@ class Teachers_chanquan(View):
 
         username = user.id
         professor = user.professor
-
         rate_jidians = Work_rate_jidian.objects.get(pro_name=professor)
-        Work_count.objects.create(usernum=username, count_jidians=book_count, rate_jidians=rate_jidians)
+        teacher_count = Work_count.objects.filter(usernum=user.id)
+        if teacher_count:
+            count = 0
+            for data in teacher_count:
+                count = count + data.count_jidians
+            book_count = book_count + count
+
+            teacher_count.update(usernum=username, count_jidians=book_count, rate_jidians=rate_jidians)
+        else:
+            Work_count.objects.create(usernum=username, count_jidians=book_count, rate_jidians=rate_jidians)
         return redirect(reverse('teacher:teachers_selcet'))
 
 
@@ -260,9 +306,17 @@ class Teachers_zzyj(View):
 
         username = user.id
         professor = user.professor
-
         rate_jidians = Work_rate_jidian.objects.get(pro_name=professor)
-        Work_count.objects.create(usernum=username, count_jidians=book_count, rate_jidians=rate_jidians)
+        teacher_count = Work_count.objects.filter(usernum=user.id)
+        if teacher_count:
+            count = 0
+            for data in teacher_count:
+                count = count + data.count_jidians
+            book_count = book_count + count
+
+            teacher_count.update(usernum=username, count_jidians=book_count, rate_jidians=rate_jidians)
+        else:
+            Work_count.objects.create(usernum=username, count_jidians=book_count, rate_jidians=rate_jidians)
         return redirect(reverse('teacher:teachers_selcet'))
 
 
@@ -285,9 +339,17 @@ class Teachers_proj(View):
 
         username = user.id
         professor = user.professor
-
         rate_jidians = Work_rate_jidian.objects.get(pro_name=professor)
-        Work_count.objects.create(usernum=username, count_jidians=book_count, rate_jidians=rate_jidians)
+        teacher_count = Work_count.objects.filter(usernum=user.id)
+        if teacher_count:
+            count = 0
+            for data in teacher_count:
+                count = count + data.count_jidians
+            book_count = book_count + count
+
+            teacher_count.update(usernum=username, count_jidians=book_count, rate_jidians=rate_jidians)
+        else:
+            Work_count.objects.create(usernum=username, count_jidians=book_count, rate_jidians=rate_jidians)
         return redirect(reverse('teacher:teachers_selcet'))
 
 # 6.科研奖励业绩量化表
@@ -340,3 +402,7 @@ class Teachers_xuewei(View):
 class Teacher_index(View):
     def get(self, request):
         return render(request, 'teacheringindex.html')
+
+
+
+

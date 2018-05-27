@@ -18,10 +18,10 @@ urlpatterns = [
     url(r'^teachers_proj',login_required(Teachers_proj.as_view()),name='teachers_proj'),
     url(r'^teachers_reward',login_required(Teachers_reward.as_view()),name='teachers_reward'),
     url(r'^teachers_scpitai',login_required(Teachers_scpitai.as_view()),name='teachers_scpitai'),
-url(r'^teachers_chuban',login_required(Teachers_chuban.as_view()),name='teachers_chuban'),
-url(r'^teachers_huojiang',login_required(Teachers_huojiang.as_view()),name='teachers_huojiang'),
-url(r'^teachers_zhanlan',login_required(Teachers_zhanlan.as_view()),name='teachers_zhanlan'),
-url(r'^teachers_xuewei',login_required(Teachers_xuewei.as_view()),name='teachers_xuewei'),
+    url(r'^teachers_chuban',login_required(Teachers_chuban.as_view()),name='teachers_chuban'),
+    url(r'^teachers_huojiang',login_required(Teachers_huojiang.as_view()),name='teachers_huojiang'),
+    url(r'^teachers_zhanlan',login_required(Teachers_zhanlan.as_view()),name='teachers_zhanlan'),
+    url(r'^teachers_xuewei',login_required(Teachers_xuewei.as_view()),name='teachers_xuewei'),
 
 
     # url(r'^output',Excel_get.as_view(),name='output'),

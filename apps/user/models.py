@@ -28,3 +28,18 @@ class Role(models.Model):
         db_table='df_role'
         verbose_name='角色名'
         verbose_name_plural=verbose_name
+
+class ImportFile(models.Model):
+
+    file = models.FileField(upload_to='File')
+    name = models.CharField(max_length=50, verbose_name=u'文件名')
+    def __str__(self):
+
+        return self.name
+    class Meta:
+        ordering = ['name']
+        verbose_name='批量导入用户'
+        verbose_name_plural = verbose_name
+
+
+

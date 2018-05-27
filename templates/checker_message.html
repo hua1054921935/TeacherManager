@@ -54,52 +54,25 @@
 
 <div class="nav-navicon admin-main admin-sidebar">
 
-  <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"><a href="./teacheringindex.html">个人信息主页</a> </div>
+    <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"><a
+            href={% url 'checker:checker_index' %}>审核人员主页</a></div>
   <div class="sideMenu">
-    <h3 class="am-icon-flag"><em></em> <a href="#">教师个人信息</a></h3>
-    <ul>
-      <li><a href={% url 'teacher:teachers_selcet' %}>业绩查看</a></li>
-      <li><a href={% url 'user:selfmessage' %}>查询个人信息</a></li>
-    </ul>
-      <h3 class="am-icon-cart-plus"><em></em> <a href="#"> 教研和教材</a></h3>
+    <h3 class="am-icon-flag"><em></em> <a href="#">教师业绩查询</a></h3>
       <ul>
-          <li><a href={% url 'teacher:teachers_work' %}>教研</a></li>
-          <li><a href={% url 'teacher:teachers_pingtai' %}>教学平台</a></li>
-          <li><a href={% url 'teacher:teachers_book' %}>教材</a></li>
+        <li><a href={% url 'checker:checker_select_all' %}>业绩查询</a></li>
+
       </ul>
-      <h3 class="am-icon-users"><em></em> <a href="#">自然科学</a></h3>
+      <h3 class="am-icon-cart-plus"><em></em> <a href="#"> 业绩审核</a></h3>
       <ul>
-        <li><a href={% url 'teacher:teachers_science' %}>科研项目</a> </li>
-        <li><a href={% url 'teacher:teachers_thesis' %}>论文</a></li>
-        <li><a href={% url 'teacher:teachers_chanquan' %}>知识产权</a></li>
-        <li><a href={% url 'teacher:teachers_zzyj' %}>著作</a></li>
-        <li><a href={% url 'teacher:teachers_proj' %}>项目结项、评价</a></li>
-        <li><a href={% url 'teacher:teachers_reward' %}>科研奖励</a></li>
-        <li><a href={% url 'teacher:teachers_scpitai' %}>科研、学科平台</a> </li>
-        <!-- <li>会员推荐图</li>
-        <li>推荐列表</li> -->
+          <li><a href={% url 'checker:checker_message' %}>个人信息查询</a></li>
+
       </ul>
-      <h3 class="am-icon-volume-up"><em></em> <a href="#">人文社会科学科研</a></h3>
+      <h3 class="am-icon-users"><em></em> <a href="#">数据展示</a></h3>
       <ul>
-        <li><a href={% url 'teacher:teachers_science' %}>科研项目</a> </li>
-        <li><a href={% url 'teacher:teachers_thesis' %}>论文</a></li>
-        <li><a href={% url 'teacher:teachers_zzyj' %}>著作</a>  </li>
-        <li><a href={% url 'teacher:teachers_proj' %}>项目结题</a></li>
-        <li><a href={% url 'teacher:teachers_scpitai' %}>科研项目</a></li>
+          <li><a href={% url 'checker:showdata' %}>业绩展示</a></li>
       </ul>
-      <h3 class="am-icon-gears"><em></em> <a href="#">文学艺术类作品业绩点</a></h3>
-      <ul>
-        <li><a href={% url 'teacher:teachers_chuban' %}>文艺作品出版和发表</a></li>
-        <li><a href={% url 'teacher:teachers_zhanlan' %}>艺术展览与文艺演出</a></li>
-        <li><a href={% url 'teacher:teachers_huojiang' %}>文艺作品获奖</a></li>
-      </ul>
-      <h3 class="am-icon-gears"><em></em> <a href="#">学科建设业绩点</a></h3>
-      <ul>
-        <li><a href={% url 'teacher:teachers_xuewei' %}>学科建设业绩</a></li>
-        <!-- <li><a href='./teacheringxueke.html'>学科</a></li>
-        <li><a href='./teacheringyanjius.html'>研究生培养</a></li> -->
-      </ul>
-    </div>
+
+  </div>
     <!-- sideMenu End -->
 
     <script type="text/javascript">
@@ -136,7 +109,7 @@
     <div class="admin-biaoge">
       <div class="xinxitj">个人信息查询</div>
       <div class="reg_form clearfix">
-          <form action="{% url 'user:selfmessage' %}" method="post">
+          <form action="{% url 'checker:checker_message' %}" method="post">
           <ul>
             <li>
               <label>学工号:</label>

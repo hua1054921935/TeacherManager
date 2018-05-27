@@ -150,7 +150,7 @@ class Login(View):
                 # 帐号已激活
                 # 记住状态
                 login(request, user)
-                response = redirect(reverse('user:role_select'))
+                response = redirect(reverse('user:role_select',args=role_id))
                 remember = request.POST.get('remember')
 
                 if remember == 'on':
@@ -169,16 +169,18 @@ class Login(View):
 
 
 class Role_select(View):
-    def get(self,request):
+    def get(self,request,role_id):
         user=request.user
-        print(user.username)
-        print('当前'+str(user.role_id))
-        if user.role.role_name=='教师':
-            return render(request,'teacheringindex.html')
-        elif user.role.role_name=='审核员':
-            return render(request,'checker_index.html')
+        print(role_id)
+        if user.role_id==int(role_id):
+            if user.role.role_name=='教师':
+                return render(request,'teacheringindex.html')
+            elif user.role.role_name=='审核员':
+                return render(request,'checker_index.html')
+            else:
+                return render(request,'adminstor_index.html')
         else:
-            return render(request,'adminstor_index.html')
+            return render(request, 'login.html', {'errmsg': '帐号不存在请注册'})
     def post(self,requset):
         pass
 # /user/selfmessage

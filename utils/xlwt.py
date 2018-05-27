@@ -1,7 +1,7 @@
 # coding=utf-8
 # 新建excil
 import openpyxl
-
+from openpyxl import load_workbook
 
 def create_excel(wbname):
     wb=openpyxl.Workbook()
@@ -31,6 +31,15 @@ def save_data_excel(data,fields,shellname,wbname):
     print("保存成功")
     return newwbname
 
+def read_xls(self,request, obj, change):
+    print(obj)
+    wb = load_workbook(filename='../File/'+obj+'.xlsx')
+    ws = wb.active
+
+    # rows = table.max_row  # 获取行数
+    # cols = table.max_column # 获取列数
+    # Data = table.cell(row=rows, column=cols).value
+    print(ws)
 
 
 

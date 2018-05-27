@@ -40,16 +40,17 @@ class Teacher_pingtai(models.Model):
 
 # 教材业绩量化表
 class Teacher_book(models.Model):
-    Choice=((0,'国家级规划教材'),
-            (1,'省级规划教材'),
-            (2, '其他教材'),
-            (3, '中文编写'),
-            (4, '外文编写')
-            )
+    # Choice=((0,'国家级规划教材'),
+    #         (1,'省级规划教材'),
+    #         (2, '其他教材'),
+    #         (3, '中文编写'),
+    #         (4, '外文编写')
+    #         )
     # book_level=models.SmallIntegerField(default=1,choices=Choice,verbose_name='1.教材级别系数、语言类别系数表')
     book_level=models.ForeignKey('Book_level',verbose_name='.教材级别系数、语言类别系数表')
     book_auth=models.ForeignKey('Book_auth',verbose_name='主编部分')
     book_lixiang=models.ForeignKey('Book_lixiang',verbose_name='立项系数')
+
     class Meta:
         db_table = 'teacher_book'
         verbose_name = '教材业绩量化表'
@@ -59,6 +60,8 @@ class Teacher_book(models.Model):
 class Book_level(models.Model):
     book_level_name=models.CharField(max_length=50, verbose_name='等级名称')
     book_jidian=models.IntegerField(default=0, verbose_name='业绩点')
+    def __str__(self):
+        return self.book_level_name
     class Meta:
         db_table = 'book_level'
         verbose_name = '教材级别系数、语言类别系数表'
@@ -66,7 +69,8 @@ class Book_level(models.Model):
 class Book_auth(models.Model):
     book_auth_name = models.CharField(max_length=50, verbose_name='主编名称')
     auth_jidian = models.IntegerField(default=0, verbose_name='业绩点')
-
+    def __str__(self):
+        return self.book_auth_name
     class Meta:
         db_table = 'book_auth'
         verbose_name = '主编部分'
@@ -74,7 +78,8 @@ class Book_auth(models.Model):
 class Book_lixiang(models.Model):
     book_lixiang_name = models.CharField(max_length=50, verbose_name='立项名')
     book_lixiang_math = models.CharField(max_length=50, verbose_name='立项系数')
-
+    def __str__(self):
+        return self.book_lixiang_name
     class Meta:
         db_table = 'book_lixiang'
         verbose_name = '立项系数'
@@ -82,24 +87,26 @@ class Book_lixiang(models.Model):
 
 
 
-# 业绩表 没用了
-class Teacher_count(models.Model):
-    usernum=models.CharField(max_length=50,verbose_name='用户学号')
-    count_jidian=models.IntegerField(default=0,verbose_name='个人业绩点')
-    rate_jidian=models.ForeignKey('Rate_jidian',verbose_name='额定业绩点')
-    class Meta:
-        db_table = 'teacher_count'
-        verbose_name = '教师业绩点统计'
-        verbose_name_plural = verbose_name
+# # 业绩表 没用了
+# class Teacher_count(models.Model):
+#     usernum=models.CharField(max_length=50,verbose_name='用户学号')
+#     count_jidian=models.IntegerField(default=0,verbose_name='个人业绩点')
+#     rate_jidian=models.ForeignKey('Rate_jidian',verbose_name='额定业绩点')
+#     class Meta:
+#         db_table = 'teacher_count'
+#         verbose_name = '教师业绩点统计'
+#         verbose_name_plural = verbose_name
 
-class Rate_jidian(models.Model):
-    name=models.CharField(max_length=50, verbose_name='职称名')
-    scien_jiidan=models.IntegerField(default=0,verbose_name='教学业绩点')
-    teach_jiidan = models.IntegerField(default=0, verbose_name='科研业绩点')
-    class Meta:
-        db_table = 'rate_jidian'
-        verbose_name = '职称对应业绩点'
-        verbose_name_plural = verbose_name
+# class Rate_jidian(models.Model):
+#     name=models.CharField(max_length=50, verbose_name='职称名')
+#     scien_jiidan=models.IntegerField(default=0,verbose_name='教学业绩点')
+#     teach_jiidan = models.IntegerField(default=0, verbose_name='科研业绩点')
+#     def __str__(self):
+#         return self.name
+#     class Meta:
+#         db_table = 'rate_jidian'
+#         verbose_name = '职称对应业绩点'
+#         verbose_name_plural = verbose_name
 
 
 # 目前使用的是这个业绩表
@@ -116,6 +123,8 @@ class Work_rate_jidian(models.Model):
     pro_name=models.CharField(max_length=50, verbose_name='职称名')
     scien_jiidans=models.IntegerField(default=0,verbose_name='教学业绩点')
     teach_jiidans = models.IntegerField(default=0, verbose_name='科研业绩点')
+    def __str__(self):
+        return self.pro_name
     class Meta:
         db_table = 'work_rate_jidian'
         verbose_name = '职称业绩点'
@@ -199,6 +208,8 @@ class Nut_book_lixinag(models.Model):
 # 5.项目结业、评价业绩量化表
 class Country(models.Model):
     country_name=models.CharField(max_length=120,verbose_name='组织单位名')
+    def __str__(self):
+        return self.country_name
     class Meta:
         db_table = 'country'
         verbose_name = '组织单位'
@@ -237,6 +248,8 @@ class Science(models.Model):
 
 class Reward_level1(models.Model):
     reward_level1_name=models.CharField(max_length=120,verbose_name='奖励等级1名')
+    def __str__(self):
+        return self.reward_level1_name
     class Meta:
         db_table = 'reward_level1'
         verbose_name = '奖励等级1'

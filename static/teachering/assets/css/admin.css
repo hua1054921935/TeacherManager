@@ -9,14 +9,14 @@
   width: 210px;
   min-height: 100%;
   padding: 10px;
-  font-size: 15px;
+  font-size: 18px;
   left: 0;
   top: 50px;
 }
 .admin-sidebar-list{margin-bottom: 0}
 .admin-sidebar-list li a{color: #fff;padding-left: 24px}
 .admin-sidebar-list li:first-child{border-top: none}
-.admin-sidebar-sub{margin-top: 0;margin-bottom: 0;box-shadow: 0 16px 8px -15px #e2e2e2 inset;background: #ececec;font-size: 12px }
+.admin-sidebar-sub{margin-top: 0;margin-bottom: 0;box-shadow: 0 16px 8px -15px #e2e2e2 inset;background: #ececec;font-size: 18px }
 .admin-sidebar-sub li:first-child{border-top: 1px solid #dedede}
 .admin-sidebar-panel{margin: 10px}
 .admin-content{width: auto;background-color: #f1f2f7}

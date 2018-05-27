@@ -17,6 +17,9 @@
   <link rel="stylesheet" href="{% static 'teachering/assets/css/admin.css' %}">
     <script src="{% static 'teachering/assets/js/jquery.min.js' %}"></script>
     <script src="{% static 'teachering/assets/js/app.js' %}"></script>
+    <script type="text/javascript" src="{% static 'teachering/assets/js/echarts.js' %}"></script>
+    {% block js_add %}
+    {% endblock %}
 </head>
 <body>
 <!--[if lte IE 9]><p class="browsehappy">升级你的浏览器吧！ <a href="http://se.360.cn/" target="_blank">升级浏览器</a>以获得更好的体验！</p><![endif]-->
@@ -56,14 +59,14 @@
     <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"><a
             href={% url 'checker:checker_index' %}>审核人员主页</a></div>
   <div class="sideMenu">
-    <h3 class="am-icon-flag"><em></em> <a href="#">教师业绩查询</a></h3>
+    <h3 class="am-icon-flag"><em></em> <a href="#">教师业绩审核</a></h3>
       <ul>
-        <li><a href="./checker_yjselect.html">业绩查询</a></li>
+        <li><a href={% url 'checker:checker_select_all' %}>业绩查询</a></li>
         
       </ul>
-      <h3 class="am-icon-cart-plus"><em></em> <a href="#"> 业绩审核</a></h3>
+      <h3 class="am-icon-cart-plus"><em></em> <a href="#"> 个人信息</a></h3>
       <ul>
-          <li><a href='###'>个人信息查询</a></li>
+          <li><a href={% url 'checker:checker_message' %}>个人信息查询</a></li>
           
       </ul>
       <h3 class="am-icon-users"><em></em> <a href="#">数据展示</a></h3>
@@ -106,15 +109,17 @@
 <div class="admin">
 
     <div class="admin-biaoge">
+        {% block body1 %}
         <div class="xinxitj">审核员主页</div>
-      <img src={% static 'teachering/assets/img/night.jpg' %}>
-        <div class="index" style="float: left">
-            <p>业绩录入主要功能</p>
+        <img src={% static 'teachering/assets/img/night.jpg' %}>
+        <div class="index" style="font-size: 20px">
+            <p>审核员要功能</p>
             <p>1.教师业绩查询</p>
             <p>2.教师业绩审核</p>
             <p>3.数据分析</p>
-
+            <p>4.数据导出</p>
         </div>
+        {% endblock %}
      
       
    

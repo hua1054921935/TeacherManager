@@ -1,0 +1,65 @@
+{% extends 'checker_index.html' %}
+{% block body1 %}
+
+<div class=" admin-content">
+	
+		<div class="daohang">
+</div>
+	
+	
+
+
+<div class="admin">
+
+    <div class="admin-biaoge">
+      <div class="xinxitj">教研业绩量化表</div>
+      <table class="am-table">
+        <thead>
+          <tr>
+            <th>教师工号</th>
+            <th>个人当前业绩点</th>
+            <th>教学额定业绩点</th>
+            <th>科研额定业绩点</th>
+{#            <th>备注</th>#}
+{#			      <th>添加</th>#}
+          </tr>
+        </thead>
+        <tbody>
+        {% for data in list1 %}
+          <tr>
+            <td>{{ data.username }}</td>
+            <td>{{ data.count }}</td>
+            <td>{{ data.teacher_jidian }}</td>
+            <td>{{ data.secien_jidian }} </td>
+{#            <td>1.国家和省部级教改项目</td>#}
+              <td><a href="/checker/checker_shehe{{ data.username }}/">审核</a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+   
+    </div>
+    <div class="shuju">
+    <div style="float: right">
+    <p style="font-size: 20px"><a href={% url 'checker:Excel_get' %} >导出所有教师业绩</a></p>
+
+    </div>
+     
+      <script type="text/javascript">jQuery(".slideTxtBox").slide();</script> 
+   
+   
+   
+   
+   
+   
+   
+   
+</div>
+
+    </div>
+
+</div>
+{% endblock %}
+
+
+
